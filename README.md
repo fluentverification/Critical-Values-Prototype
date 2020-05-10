@@ -12,6 +12,7 @@ Essentially the program evaluates the reaction rate formula for each value of Te
 To find these points, the program creates a .txt files when ran. The first file includes all the points recorded in the form: number of LacI, reaction rate, instantaneous change in rr. The program then prints to the terminal the highest change in reaction rate and at what value of LacI/TetR that was recorded at in order to give the user somewhat of an idea for what value to use for the threshold. It then prompts for the threshold from the user. With this threshold, the program then evaluates the first text file and creates a second one containing only values that have a difference of the threshold or greater. It does not simply look at the change in rr for each data point to determine the values. Instead it starts at the first point. From the initial point, it then finds the next point to have a change greater than that of the threshold. This next point could be the next item or it could be 10 points away. This way the list stays dynamic depending on how many points you are trying to get.
 
 INSTRUCTIONS
+
 To use the program you can download the already compiled file called CriticalPointFinder.out and run it on the linux command terminal using ./CriticalPointFinder.out. The program will then prompt for all the info needed and the results will be printed out to the resulting .txt files whith names specified by the user during run time.
 The other option is to download the three source files and compile them yourself.
 
