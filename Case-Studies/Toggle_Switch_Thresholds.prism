@@ -1,0 +1,51 @@
+ctmc
+
+const int aTc = 0;
+
+const int IPTG = 0;
+
+formula p_t = .99 / ((LacI * .5) * (LacI * .5) + 1.99);
+formula p_l = .99 / ((TetR * .5) * (TetR * .5) + 1.99);
+
+const int MAXLacI = 80;
+const int MAXTetR = 50;
+
+//0,2,3,4,6,12
+
+module TetR_def
+
+        TetR : [0..MAXTetR] init 0;
+
+// [] TetR=3 -> p_t*[DEGREDATION PROBLEM]:(TetR'=TetR+1)... We believe something is wrong with our degredation rates does p_t * 10 increase speed or decrease speed?
+
+	[] TetR=0 -> p_t*10:(TetR'=TetR+1);
+    [] TetR=1 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+	[] TetR=2 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=3 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=4 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=5 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=6 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=7 -> p_t*5:(TetR'=TetR+2) + 0.0075*TetR:(TetR'=TetR-1);
+    [] TetR=9 -> p_t*2.5:(TetR'=TetR+4) + 0.0075*TetR/2:(TetR'=TetR-2);
+    [] TetR=13 -> p_t*(10/28):(TetR'=TetR+28) + 0.0075*TetR/4:(TetR'=TetR-4);
+    [] TetR=41 -> p_t*(10 /(MAXTetR-TetR)):(TetR'=TetR+(MAXTetR-TetR)) + 0.0075*TetR/28:(TetR'=TetR-28);
+	[] TetR=MAXTetR -> 0.0075*TetR/(MAXTetR-41):(TetR'=TetR-(MAXTetR-41));
+	
+endmodule
+
+module LacI_def
+
+	LacI : [0..MAXLacI] init MAXLacI;
+
+	[] LacI=0 -> p_l*10:(LacI'=LacI+1);
+    [] LacI=1 -> p_l*10:(LacI'=LacI+1) + 0.0075*LacI:(LacI'=LacI-1);
+	[] LacI=2 -> p_l*10:(LacI'=LacI+1) + 0.0075*LacI:(LacI'=LacI-1);
+    [] LacI=3 -> p_l*10:(LacI'=LacI+1) + 0.0075*LacI:(LacI'=LacI-1);
+    [] LacI=4 -> p_l*10:(LacI'=LacI+1) + 0.0075*LacI:(LacI'=LacI-1);
+    [] LacI=5 -> p_l*10:(LacI'=LacI+1) + 0.0075*LacI:(LacI'=LacI-1);
+    [] LacI=6 -> p_l*5:(LacI'=LacI+2) + 0.0075*LacI:(LacI'=LacI-1);
+    [] LacI=8 -> p_l*2:(LacI'=LacI+5) + 0.0075*LacI/2:(LacI'=LacI-2);
+    [] LacI=13 -> p_l*(10/67):(LacI'=LacI+(MAXLacI-LacI)) + 0.0075*LacI/5:(LacI'=LacI-5);
+	[] LacI=MAXLacI -> 0.0075*LacI/(MAXLacI-13):(LacI'=LacI-(MAXLacI-13));
+	
+endmodule
