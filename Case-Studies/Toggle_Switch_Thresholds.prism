@@ -16,7 +16,7 @@ module TetR_def
 
         TetR : [0..MAXTetR] init 0;
 
-// [] TetR=3 -> p_t*[DEGREDATION PROBLEM]:(TetR'=TetR+1)... We believe something is wrong with our degredation rates does p_t * 10 increase speed or decrease speed?
+	// [] TetR=3 -> p_t*[DEGREDATION PROBLEM]:(TetR'=TetR+1)... We believe something is wrong with our degredation rates does p_t * 10 increase speed or decrease speed?
 
 	[] TetR=0 -> p_t*10:(TetR'=TetR+1);
     [] TetR=1 -> p_t*10:(TetR'=TetR+1) + 0.0075*TetR:(TetR'=TetR-1);
