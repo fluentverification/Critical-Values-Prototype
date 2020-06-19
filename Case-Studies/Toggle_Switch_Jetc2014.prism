@@ -4,8 +4,11 @@ const int aTc = 0;
 
 const int IPTG = 0;
 
-const int TetR_Change = 5;	//value at 5 gives "good" result
-const int LacI_Change = 10;	//value at 10 gives "good" result
+const int TetR_ChangeDOWN = 2;	//value at 5 gives "good" result
+const int LacI_ChangeDOWN = 2;	//value at 10 gives "good" result
+
+const int TetR_ChangeUP = 10;	//value at 5 gives "good" result
+const int LacI_ChangeUP = 10;	//value at 10 gives "good" resul
 
 //formula p_t = 9.9 / ((LacI * .5) * (LacI * .5) + 1.99);
 //formula p_l = 9.9 / ((TetR * .5) * (TetR * .5) + 1.99);
@@ -21,11 +24,11 @@ module TetR_def
 
         TetR : [0..MAXTetR] init 0;
 
-	[] TetR=0 -> p_t * (10/TetR_Change) : (TetR'=TetR+TetR_Change);		//(10/TetR_Change) is based from the formula above being for every 10 molecules
+	[] TetR=0 -> p_t * (1/TetR_ChangeUP) : (TetR'=TetR+TetR_ChangeUP);		//(10/TetR_Change) is based from the formula above being for every 10 molecules
 										//divided by the number we are currently changing it by (TetR_Change)
 
-    	[] TetR>0 & TetR<MAXTetR -> p_t * (10/TetR_Change) : (TetR'=TetR+TetR_Change) + 0.0075*TetR/TetR_Change:(TetR'=TetR-TetR_Change);
-	[] TetR=MAXTetR -> 0.0075*TetR/TetR_Change : (TetR'=TetR-TetR_Change);
+    	[] TetR>0 & TetR<MAXTetR -> p_t * (1/TetR_ChangeUP) : (TetR'=TetR+TetR_ChangeUP) + 0.0075*TetR/TetR_ChangeDOWN:(TetR'=TetR-TetR_ChangeDOWN);
+	[] TetR=MAXTetR -> 0.0075*TetR/TetR_ChangeDOWN : (TetR'=TetR-TetR_ChangeDOWN);
 	
 endmodule
 
@@ -33,8 +36,8 @@ module LacI_def
 
 	LacI : [0..MAXLacI] init 60;
 
-	[] LacI=0 -> p_l * (10/LacI_Change):(LacI'=LacI+LacI_Change);
-    	[] LacI>0 & LacI<MAXLacI -> p_l * (10/LacI_Change):(LacI'=LacI+LacI_Change) + 0.0075*LacI/LacI_Change :(LacI'=LacI-LacI_Change);
-	[] LacI=MAXLacI -> 0.0075*LacI/LacI_Change :(LacI'=LacI-LacI_Change);
+	[] LacI=0 -> p_l * (1/LacI_ChangeUP):(LacI'=LacI+LacI_ChangeUP);
+    	[] LacI>0 & LacI<MAXLacI -> p_l * (1/LacI_ChangeUP):(LacI'=LacI+LacI_ChangeUP) + 0.0075*LacI/LacI_ChangeDOWN :(LacI'=LacI-LacI_ChangeDOWN);
+	[] LacI=MAXLacI -> 0.0075*LacI/LacI_ChangeDOWN :(LacI'=LacI-LacI_ChangeDOWN);
 	
 endmodule
