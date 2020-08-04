@@ -1,0 +1,31 @@
+kd = 0.0075 = 7.5*10^(-3)
+
+expectedTime_lower = (1/kd) * (1/20 + 1/19 + ... + 1/6)
+
+rate_new_lower = 1/expectedTime_lower = kd * 1/(1/20 + 1/19 + ... + 1/6) = kd * 1/(1.31) = kd * 0.74
+
+expectedTime_upper = (1/kd) * (1/6)
+
+rate_new_upper = 1/expectedTime_upper = kd * 1/(1/6) = kd * 6
+
+rate_new = [rate_new_lower, rate_new_upper] = [kd*0.74, kd*6]
+
+rate_old = kd* TetR = kd * (20 - 6) = kd * 14
+
+
+// Degrade by 1
+expectedTime = (1/kd) * (1/TetR)
+rate_new = 1/expectedTime = kd*TetR
+
+// Degrade by 2
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1))
+
+// Degrade by 3
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1) + 1/(TetR-2))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1) + 1/(TetR-2))
+
+
+// Degrade by n
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1) + ... + 1/(TetR-(n-1)))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1) + ... + 1/(TetR-(n-1)))

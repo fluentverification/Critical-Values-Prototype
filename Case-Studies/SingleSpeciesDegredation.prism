@@ -1,5 +1,7 @@
 ctmc
 
+const double kd = 0.0075 ;
+
 const int aTc = 0;
 
 const int IPTG = 0;
@@ -12,8 +14,21 @@ const int MAX = 100;
 
 module TetR_def
 
-	TetR : [0..MAX] init 20;
+	TetR : [0..MAX] init 100;
 	
-	[] TetR>=0 -> 0.0075*(3.59774) :(TetR'=TetR-1);	//3.59774 being (1/20 + 1/19 ... 1/2 + 1/1)
-	
+	[] TetR=10 -> kd / (1/2.92897) :(TetR'=TetR-10);
+	[] TetR=40 -> kd / (1/1.34957) :(TetR'=TetR-30);
+	[] TetR=55 -> kd / (1/0.315069) :(TetR'=TetR-15);
+	[] TetR=75 -> kd / (1/0.307743) :(TetR'=TetR-20);
+	[] TetR=100 -> kd / (1/0.286022) :(TetR'=TetR-25);
+
+
+
 endmodule
+
+
+//3.59774 * 7.5e3 expected time
+
+//1/3.59774 * 7.5e-3 average rate
+
+//.0075 || 7.5e-3 

@@ -20,17 +20,23 @@
 
 #include <iostream>
 
+#define UpperBound 10 
+
+#define LowerBound 0
+
 int main()
 {
 
 	double j = 0;
 
-	for (double i=20; i > 0; i--)
+	for (double i=UpperBound; i > LowerBound; i--)
 	{
 		j += (1/i);
 	}
+	
+//	std::cout << "The sum of 1/" << UpperBound << "to 1/" << Lowerbound << "is " << j << std::endl;
+//	std::cout << "The 1/" << j << " * 1/" << std::endl;
 
-	std::cout << "The value is " << j << std::endl;
-
+	std::cout << j << std::endl;
 	return 0;
 }
