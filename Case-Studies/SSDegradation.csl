@@ -1,4 +1,4 @@
-//const double T;
+const double T;
 
+P=? [F=2000 TetR=0 ]
 
-P=? [ true U(TetR > 0) ]
