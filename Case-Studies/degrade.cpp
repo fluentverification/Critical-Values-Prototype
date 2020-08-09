@@ -17,21 +17,43 @@
  * ******************************/
 
 
-
+#include <algorithm>
 #include <iostream>
+#include <stdexcept>
+#include <string>
 
-#define UpperBound 10 
+bool is_number(const std::string&);
 
-#define LowerBound 0
-
-int main()
+int main(int argc, char *argv[])
 {
+	if (argc != 3){
+	std::cout << "Correct usage: ./DegredationRange <LowerBound> <UpperBound>" << std::endl;
+	throw std::invalid_argument("Wrong number of Arguments");
+	}
+
+	if (!is_number(argv[1]) || !is_number(argv[2])){
+	std::cout << "One or Both arguments is not a number" << std::endl;
+	throw std::invalid_argument("Wrong argument type");
+	}
+
+	double upper;
+	double lower;
+
+
+	if (std::stoi(argv[1]) > std::stoi(argv[2])){
+		upper = std::stoi(argv[1]);
+		lower = std::stoi(argv[2]);
+	}
+	else{
+		upper = std::stoi(argv[2]);
+		lower = std::stoi(argv[1]);
+	}
 
 	double j = 0;
 
-	for (double i=UpperBound; i > LowerBound; i--)
+	for (; upper > lower; upper--)
 	{
-		j += (1/i);
+		j += (1/upper);
 	}
 	
 //	std::cout << "The sum of 1/" << UpperBound << "to 1/" << Lowerbound << "is " << j << std::endl;
@@ -39,4 +61,13 @@ int main()
 
 	std::cout << j << std::endl;
 	return 0;
+}
+
+
+
+
+bool is_number(const std::string& s)
+{
+    return !s.empty() && std::find_if(s.begin(),
+        s.end(), [](unsigned char c) { return !std::isdigit(c); }) == s.end();
 }
