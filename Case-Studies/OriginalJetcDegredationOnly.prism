@@ -1,0 +1,51 @@
+ctmc
+
+const int aTc = 0;
+
+const int IPTG = 0;
+
+const double kd = 0.0075;
+
+const int TetR_Change = 5;	//value at 5 gives "good" result
+const int LacI_Change = 10;	//value at 10 gives "good" result
+
+//formula p_t = .99/(0.25*(LacI/(0.0496277915632754*IPTG + 1))*(LacI/(0.0496277915632754*IPTG + 1)) + 1.99);  //original formula from Jetc paper
+//formula p_l = .99/(0.25*(TetR/(0.0496277915632754*aTc + 1))*(TetR/(0.0496277915632754*aTc + 1)) + 1.99);
+
+//const int MAXLacI = 80;		//must be factor of LacI_change
+const int MAXTetR = 50;		//must be factor of TetR_change
+
+
+module TetR_def
+
+        TetR : [0..MAXTetR] init MAXTetR;
+	
+	[] TetR=5 -> kd / (2.28333) : (TetR'=TetR-TetR_Change); 
+	[] TetR=10 -> kd / (0.645635) : (TetR'=TetR-TetR_Change);  
+	[] TetR=15 -> kd / (0.389261) : (TetR'=TetR-TetR_Change);
+	[] TetR=20 -> kd / (0.279511) : (TetR'=TetR-TetR_Change);
+	[] TetR=25 -> kd / (0.218219) : (TetR'=TetR-TetR_Change);
+	[] TetR=30 -> kd / (0.179029) : (TetR'=TetR-TetR_Change);
+	[] TetR=35 -> kd / (0.151794) : (TetR'=TetR-TetR_Change);
+	[] TetR=40 -> kd / (0.131762) : (TetR'=TetR-TetR_Change);
+	[] TetR=45 -> kd / (0.116405) : (TetR'=TetR-TetR_Change);
+	[] TetR=MAXTetR -> kd / (0.104257) : (TetR'=TetR-TetR_Change);
+	
+endmodule
+
+
+//module LacI_def
+
+//	LacI : [0..MAXLacI] init 60;
+
+//	[] LacI=10 -> kd / (1/2.92897) : (LacI'=LacI-LacI_Change);
+//	[] LacI=20 -> kd / (1/0.668771) : (LacI'=LacI-LacI_Change);
+//	[] LacI=30 -> kd / (1/0.397247) : (LacI'=LacI-LacI_Change);
+//	[] LacI=40 -> kd / (1/0.283556) : (LacI'=LacI-LacI_Change);
+//	[] LacI=50 -> kd / (1/0.220662) : (LacI'=LacI-LacI_Change);
+//	[] LacI=60 -> kd / (1/0.180665) : (LacI'=LacI-LacI_Change);
+//	[] LacI=70 -> kd / (1/0.152966) : (LacI'=LacI-LacI_Change);
+//	[] LacI=MAXLacI -> kd / (1/.132643) : (LacI'=LacI-LacI_Change);
+	
+//endmodule
+

@@ -7,6 +7,8 @@ const int IPTG = 0;
 formula p_t = 0.99/(0.25*(LacI/(0.0496277915632754*IPTG + 1))*(LacI/(0.0496277915632754*IPTG + 1)) + 1.99);
 formula p_l = 0.99/(0.25*(TetR/(0.0496277915632754*aTc + 1))*(TetR/(0.0496277915632754*aTc + 1)) + 1.99);
 
+formula Deg = kd / (1/ (1/TetR + 1/TetR-1 ... 1/TetR-n))
+
 const int MAXLacI = 80;
 const int MAXTetR = 50;
 

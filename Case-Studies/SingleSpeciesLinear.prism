@@ -17,12 +17,12 @@ module TetR_def
 	TetR : [0..MAX] init 80;
 	
 	[] TetR=10 -> kd / (2.92897) :(TetR'=TetR-10);
-	[] TetR=40 -> kd / (1.34957) :(TetR'=TetR-30);
+	[] TetR=40 -> kd * (40 - 10) :(TetR'=TetR-30);
 	[] TetR=55 -> kd / (0.315069) :(TetR'=TetR-15);
 	[] TetR=75 -> kd / (0.307743) :(TetR'=TetR-20);
 	[] TetR=80 -> kd / (0.0641236) :(TetR'=TetR-5);
 
-
+// degredation rate = kd * (upper - lower)
 
 endmodule
 
