@@ -12,6 +12,10 @@
 
 double degredationRange(int lower, int upper);
 
+
+/****************************************/
+//Beginning of epsilon based scriptor
+/****************************************/
 void writeFile(std::string FileName, int InitialValue, int epsilon)
 {
 
@@ -29,7 +33,7 @@ PrismModel << std::endl;
 PrismModel << "module TetR_def" << std::endl;
 PrismModel << std::endl;
 PrismModel << "	TetR : [0..MAX] init MAX;" << std::endl;
-PrismModel << std:: endl;
+PrismModel << std::endl;
 
 /*******Start of Calculated Bulk********/
 
@@ -51,8 +55,12 @@ PrismModel << std::endl << "endmodule" << std::endl;
 /*******End of File*********************/
 
 PrismModel.close();
-
 }
+/***************************************/
+//End of Epsilon based script writer
+/***************************************/
+
+
 
 
 /*********************************/
@@ -61,14 +69,60 @@ PrismModel.close();
 void writeFile(std::string filename, std::vector<int> pt)
 {
 
-if (std::count(pt.begin(), pt.end(), 0)) std::cout << "0 is there" << std::endl;
-else std::cout << "0 IS NOT APART OF THIS VECTOR" << std::endl;
+if (!std::count(pt.begin(), pt.end(), 0)) pt.push_back(0);
+
+std::sort (pt.begin(), pt.end());
+
+//File start
+std::ofstream PrismModel;
+PrismModel.open(filename);
+
+std::cout << pt.back() << std::endl;
+
+/*******Beginning of Prism Model*******/
+
+PrismModel << "ctmc" << std::endl;
+PrismModel << std::endl;
+PrismModel << "const double kd = 0.0075 ;" << std::endl;
+PrismModel << std::endl;
+PrismModel << "const int MAX = " << pt.back() << ";" << std::endl;
+PrismModel << std::endl;
+PrismModel << "module TetR_def" << std::endl;
+PrismModel << std::endl;
+PrismModel << "	TetR : [0..MAX] init MAX;" << std::endl;
+PrismModel << std::endl;
+
+/*******Start of Calculated Bulk********/
+
+for(int j = 1; j < pt.size() ; j++)
+{
+
+PrismModel << "	[] TetR=" << pt.at(j) << " -> kd / (" 
+     << degredationRange( pt.at(j-1)  , pt.at(j) )
+     << ") :(TetR'=TetR-" << (pt.at(j) - pt.at(j-1))
+     << ");" << std::endl;
+
+}
+
+/********End of Bulk********************/
+
+PrismModel << std::endl << "endmodule" << std::endl;
+
+/*******End of File*********************/
+
+PrismModel.close();
 
 for (auto it = pt.begin(); it != pt.end(); it++) 
         std::cout << *it << " "; 
 
 }
+/********************************/
+//End of Irregular variable script
+/********************************/
 
+
+
+/*******************************/
 //Local Function Definitions
 
 

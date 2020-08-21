@@ -35,21 +35,24 @@ bool is_number(const std::string&);
 int main(int argc, char *argv[])
 {
 
-	if (std::stoi(argv[2]) != 0 && std::stoi(argv[2]) != 1 ){
+	if (argc < 4 ){
 	std::cout << "Correct usage: ./<program> <prism model name> <0 for epsilon based values or 1 for irregular values>" << std::endl;
 	return -1;
 	}
 		
 	std::string filename = argv[1];
+	if (filename.find(".prism") == std::string::npos){
+		filename = filename + ".prism";
+	}
 
-	if (std::stoi(argv[2]) == 0 ){
+	if (argc == 4 ){
 
-		if(argc != 5){
-		std::cout << "Correct usage: ./<program> <prism model name> 0 <initial value> <epsilon>" << std::endl;
-		return -1;
-		}
+		//if(argc != 5){
+		//std::cout << "Correct usage: ./<program> <prism model name> 0 <initial value> <epsilon>" << std::endl;
+		//return -1;
+		//}
 
-		if (!is_number(argv[3]) || !is_number(argv[4])){
+		if (!is_number(argv[2]) || !is_number(argv[3])){
 		std::cout << "Third and Fourth arguments must be integers" << std::endl;
 		return -1;
 		}
@@ -59,25 +62,20 @@ int main(int argc, char *argv[])
 		return -1;
 		}
 
-
-		if (filename.find(".prism") == std::string::npos){
-		filename = filename + ".prism";
-		}
-
-		writeFile(filename, std::stoi(argv[3]), std::stoi(argv[4]));	
+		writeFile(filename, std::stoi(argv[2]), std::stoi(argv[3]));	
 
 	}
 
-	if (std::stoi(argv[2]) == 1 ){
+	if (argc >= 5 ){
 		
-		if(argc <= 5){
-		std::cout << "Correct usage: ./<program> <prism model name> 1 <greatest threshold> ... <0>" << std::endl;
-		return -1;
-		}
+		//if(argc <= 5){
+		//std::cout << "Correct usage: ./<program> <prism model name> 1 <greatest threshold> ... <0>" << std::endl;
+		//return -1;
+		//}
 
 		std::vector<int> pt;
 
-		for(int i = (argc - 1); i > 2 ; i--){
+		for(int i = (argc - 1); i > 1 ; i--){
 		
 			std::cout << "Inserting Value: " <<  std::stoi(argv[i]) << "to Vector" << std::endl;
 			pt.push_back(std::stoi(argv[i]));		
@@ -85,21 +83,6 @@ int main(int argc, char *argv[])
 
 
 		writeFile(filename, pt);	
-
-			//for (auto it = pt.begin(); it != pt.end(); it++) 
-        		//std::cout << *it << " "; 
-		//If none of the catches above find format errors then do the following...
-
-
-		//std::string filename = argv[1];
-
-		//if (filename.find(".prism") == std::string::npos){
-		//filename = filename + ".prism";
-		//}
-
-		//writeFile(filename, std::stoi(argv[3]), std::stoi(argv[4]));	std::string filename = argv[1];
-
-		
 
 	}
 
