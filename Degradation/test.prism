@@ -1,0 +1,13 @@
+ctmc
+
+const double kd = 0.0075 ;
+
+const int MAX = 100;
+
+module TetR_def
+
+	TetR : [0..MAX] init MAX;
+
+	[] TetR=100 -> kd / (5.18738) :(TetR'=TetR-100);
+
+endmodule

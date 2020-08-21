@@ -3,7 +3,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <vector>
+#include <algorithm>
 
 #include "PrismWriter.hpp"
 
@@ -53,6 +54,20 @@ PrismModel.close();
 
 }
 
+
+/*********************************/
+//Irregular variable script writer
+/*********************************/
+void writeFile(std::string filename, std::vector<int> pt)
+{
+
+if (std::count(pt.begin(), pt.end(), 0)) std::cout << "0 is there" << std::endl;
+else std::cout << "0 IS NOT APART OF THIS VECTOR" << std::endl;
+
+for (auto it = pt.begin(); it != pt.end(); it++) 
+        std::cout << *it << " "; 
+
+}
 
 //Local Function Definitions
 

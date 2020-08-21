@@ -3,6 +3,6 @@
 
 void writeFile(std::string FileName, int InitialValue, int epsilon);
 
-
+void writeFile(std::string filename, std::vector<int> pt);
 
 #endif //PRISM_WRITER_HPP
