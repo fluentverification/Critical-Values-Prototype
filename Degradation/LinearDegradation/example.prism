@@ -8,7 +8,10 @@ module TetR_def
 
 	TetR : [0..MAX] init MAX;
 
-	[] TetR=50 -> kd * TetR/50 :(TetR'=TetR-50);
-	[] TetR=100 -> kd * TetR/50 :(TetR'=TetR-50);
+	[] TetR=20 -> kd * TetR/20 :(TetR'=TetR-20);
+	[] TetR=40 -> kd * TetR/20 :(TetR'=TetR-20);
+	[] TetR=60 -> kd * TetR/20 :(TetR'=TetR-20);
+	[] TetR=80 -> kd * TetR/20 :(TetR'=TetR-20);
+	[] TetR=100 -> kd * TetR/20 :(TetR'=TetR-20);
 
 endmodule
