@@ -77,7 +77,7 @@ std::sort (pt.begin(), pt.end());
 std::ofstream PrismModel;
 PrismModel.open(filename);
 
-std::cout << pt.back() << std::endl;
+//std::cout << pt.back() << std::endl;
 
 /*******Beginning of Prism Model*******/
 
@@ -112,8 +112,8 @@ PrismModel << std::endl << "endmodule" << std::endl;
 
 PrismModel.close();
 
-for (auto it = pt.begin(); it != pt.end(); it++) 
-        std::cout << *it << " "; 
+//for (auto it = pt.begin(); it != pt.end(); it++) 
+//        std::cout << *it << " "; 
 
 }
 /********************************/

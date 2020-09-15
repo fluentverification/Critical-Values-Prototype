@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 {
 
 	if (argc < 4 ){
-	std::cout << "Correct usage: ./<program> <prism model name> <0 for epsilon based values or 1 for irregular values>" << std::endl;
+	std::cout << "Correct usage: ./<program> <prism model name> <upper bound> <epsilon>" << std::endl;
 	return -1;
 	}
 		
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	if (argc >= 5 ){
 		
 		//if(argc <= 5){
-		//std::cout << "Correct usage: ./<program> <prism model name> 1 <greatest threshold> ... <0>" << std::endl;
+		//std::cout << "Correct usage: ./<program> <prism model name> <greatest threshold> ... <0>" << std::endl;
 		//return -1;
 		//}
 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
 		for(int i = (argc - 1); i > 1 ; i--){
 		
-			std::cout << "Inserting Value: " <<  std::stoi(argv[i]) << "to Vector" << std::endl;
+			//std::cout << "Inserting Value: " <<  std::stoi(argv[i]) << "to Vector" << std::endl;
 			pt.push_back(std::stoi(argv[i]));		
 		}
 
