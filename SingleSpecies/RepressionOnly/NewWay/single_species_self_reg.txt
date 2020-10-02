@@ -1,0 +1,51 @@
+kd = 0.0075 = 7.5*10^(-3)
+
+expectedTime_lower = (1/kd) * (1/20 + 1/19 + ... + 1/6)
+
+rate_new_lower = 1/expectedTime_lower = kd * 1/(1/20 + 1/19 + ... + 1/6) = kd * 1/(1.31) = kd * 0.74
+
+expectedTime_upper = (1/kd) * (1/6)
+
+rate_new_upper = 1/expectedTime_upper = kd * 1/(1/6) = kd * 6
+
+rate_new = [rate_new_lower, rate_new_upper] = [kd*0.74, kd*6]
+
+rate_old = kd* TetR = kd * (20 - 6) = kd * 14
+
+
+// Degrade by 1
+expectedTime = (1/kd) * (1/TetR) = 1/(kd*TetR)
+rate_new = 1/expectedTime = kd*TetR
+
+// Degrade by 2
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1))
+
+// Degrade by 3
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1) + 1/(TetR-2))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1) + 1/(TetR-2))
+
+
+// Degrade by n
+expectedTime = (1/kd) * (1/TetR + 1/(TetR-1) + ... + 1/(TetR-(n-1)))
+rate_new = 1/expectedTime = kd/(1/TetR + 1/(TetR-1) + ... + 1/(TetR-(n-1)))
+
+====================================================
+
+formula p_t(TetR) = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99); 
+
+// Repress by 1
+rate = p_t(TetR) = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99)
+expectedTime = 1/rate = 1/p_t(TetR)
+
+
+// Repress by 2
+expectedTime = 1/p_t(TetR) + 1/p_t(TetR+1) < 2/p_t(TetR)
+rate = 1/expectedTime = 1/(1/p_t(TetR) + 1/p_t(TetR+1))
+
+// Repress by 3
+expectedTime = 1/p_t(TetR) + 1/p_t(TetR+1) + 1/p_t(TetR+2)
+rate = 1/expectedTime = 1/(1/p_t(TetR) + 1/p_t(TetR+1) + 1/p_t(TetR+2))
+
+// Repress by n
+rate = 1/expectedTime = 1/(1/p_t(TetR) + 1/p_t(TetR+1) + ... + 1/p_t(TetR+(n-1)))
