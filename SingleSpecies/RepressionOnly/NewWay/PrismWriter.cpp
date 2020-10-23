@@ -133,6 +133,7 @@ PrismModel.close();
 double repressionRange(int lowerInt, int upperInt)
 {
 
+	//(1/pt(start) + 1/pt(start+1) ... 1/pt(end)))
 	double upper = upperInt;
 	double lower = lowerInt;
 
@@ -150,5 +151,7 @@ double repressionRange(int lowerInt, int upperInt)
 
 double p_t(int value) {
 	int IPTG = 0;
-	return 0.99/(0.25*(value/(0.0496277915632754*IPTG + 1))*(value/(0.0496277915632754*IPTG + 1)) + 1.99);
+	//this is the rate for incrementing by 1
+	//use .99 for incrementing by 10
+	return 9.9/(0.25*(value/(0.0496277915632754*IPTG + 1))*(value/(0.0496277915632754*IPTG + 1)) + 1.99);
 }
