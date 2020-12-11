@@ -1,5 +1,6 @@
-const double T;
 
-P=? [F=T TetR>90 ]
+"one" : P=? [F=5000 TetR>90 ]
+"two" : P=? [F=6000 TetR>90 ]
+"three" : P=? [F=7000 TetR>90 ]
 
 

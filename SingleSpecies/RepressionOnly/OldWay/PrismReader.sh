@@ -15,11 +15,18 @@ max=100
 #These are the epsilon values for prism
 values=(100 50 25 20 10 5 4 2 1)
 
+#number of properties on the file
+properties=(1 2 3)
+
+#the property to be tested (see the -p flag for manually entering in property)
+#property="tempProp.csl"
+
+
 #Name of resulting file (without .txt)
-file="Oldresult"
+file="OldResult"
 
 #Destination of result
-location="/home/porter/Critical-Values-Prototype/SingleSpecies/RepressionOnly"
+location="/home/porter/Critical-Values-Prototype/SingleSpecies/RepressionOnly/data"
 
 
 ###################################
@@ -39,6 +46,10 @@ while test $# -gt 0; do
 	case "$1" in
 		'-v')
 			verbose=true
+			shift
+			;;
+		'-p')
+			property="$1"
 			shift
 			;;
 		'-h'|'--help')
@@ -78,21 +89,35 @@ if "$verbose"; then
 	echo "Running model \"$name\""
 fi
 
-#Run prism for each value of set values
-for i in "${values[@]}"; do 
+#For each property
+for prop in "${properties[@]}"; do
+
+	#check if results is already there
+	if [ -f "$location/$file"_prop"$prop".txt ]; then
+		rm "$location/$file"_prop"$prop".txt
+	fi
 
 	#Print status
 	if "$verbose"; then
-		echo "Checking model with $i values"
+		echo "From Property number $prop"
 	fi
 
-	#Run Prism for next value of set values 
-	./PrismWriter  temp.prism "$max" "$i"
+	#Run prism for each value of set values
+	for i in "${values[@]}"; do 
 
-	Result="$(prism temp.prism ../SSRepression.csl | grep "Result: " | sed s/^Result:.// | sed s/".(value in the initial state)"//)"
+		#Print status
+		if "$verbose"; then
+			echo "Checking model with $i values"
+		fi
 
-	echo "$Result $(expr $max / $i)" >> "$location/$file".txt
+		#Run Prism for next value of set values 
+		./PrismWriter  temp.prism "$max" "$i"
 
+		Result="$(prism temp.prism ../SSRepression.csl -prop "$prop" | grep "Result: " | sed s/^Result:.// | sed s/".(value in the initial state)"//)"
+
+		echo "$Result $(expr $max / $i)" >> "$location/$file"_prop"$prop".txt
+
+	done
 done
 
 rm temp.prism
