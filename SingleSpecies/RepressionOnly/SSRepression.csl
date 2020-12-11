@@ -1,4 +1,5 @@
 const double T;
 
-P=? [F=10000 TetR>50 ]
+P=? [F=T TetR>90 ]
+
 

@@ -1,0 +1,32 @@
+ctmc
+
+const double kd = 0.0075 ;
+
+const int MAX = 100;
+
+module TetR_def
+
+	TetR : [0..MAX] init MAX;
+
+	[] TetR=5 -> kd / (2.28333) :(TetR'=TetR-5);
+	[] TetR=10 -> kd / (0.645635) :(TetR'=TetR-5);
+	[] TetR=15 -> kd / (0.389261) :(TetR'=TetR-5);
+	[] TetR=20 -> kd / (0.279511) :(TetR'=TetR-5);
+	[] TetR=25 -> kd / (0.218219) :(TetR'=TetR-5);
+	[] TetR=30 -> kd / (0.179029) :(TetR'=TetR-5);
+	[] TetR=35 -> kd / (0.151794) :(TetR'=TetR-5);
+	[] TetR=40 -> kd / (0.131762) :(TetR'=TetR-5);
+	[] TetR=45 -> kd / (0.116405) :(TetR'=TetR-5);
+	[] TetR=50 -> kd / (0.104257) :(TetR'=TetR-5);
+	[] TetR=55 -> kd / (0.0944069) :(TetR'=TetR-5);
+	[] TetR=60 -> kd / (0.0862582) :(TetR'=TetR-5);
+	[] TetR=65 -> kd / (0.0794051) :(TetR'=TetR-5);
+	[] TetR=70 -> kd / (0.0735612) :(TetR'=TetR-5);
+	[] TetR=75 -> kd / (0.0685189) :(TetR'=TetR-5);
+	[] TetR=80 -> kd / (0.0641236) :(TetR'=TetR-5);
+	[] TetR=85 -> kd / (0.0602585) :(TetR'=TetR-5);
+	[] TetR=90 -> kd / (0.0568329) :(TetR'=TetR-5);
+	[] TetR=95 -> kd / (0.0537759) :(TetR'=TetR-5);
+	[] TetR=100 -> kd / (0.051031) :(TetR'=TetR-5);
+
+endmodule

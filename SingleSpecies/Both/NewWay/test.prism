@@ -1,0 +1,33 @@
+ctmc
+
+const double kd = 0.0075 ;
+
+const int MAX = 100;
+
+module TetR_def
+
+	TetR : [0..MAX] init 0;
+
+	[] TetR=0 -> 0.567335 : (TetR'=TetR+5);
+	[] TetR=5 -> 0.134328 : (TetR'=TetR+5) + kd / (0.645635) : (TetR'=TetR-5);
+	[] TetR=10 -> 0.0514419 : (TetR'=TetR+5) + kd / (0.389261) : (TetR'=TetR-5);
+	[] TetR=15 -> 0.0264918 : (TetR'=TetR+5) + kd / (0.279511) : (TetR'=TetR-5);
+	[] TetR=20 -> 0.0160337 : (TetR'=TetR+5) + kd / (0.218219) : (TetR'=TetR-5);
+	[] TetR=25 -> 0.0107178 : (TetR'=TetR+5) + kd / (0.179029) : (TetR'=TetR-5);
+	[] TetR=30 -> 0.00765987 : (TetR'=TetR+5) + kd / (0.151794) : (TetR'=TetR-5);
+	[] TetR=35 -> 0.00574346 : (TetR'=TetR+5) + kd / (0.131762) : (TetR'=TetR-5);
+	[] TetR=40 -> 0.00446459 : (TetR'=TetR+5) + kd / (0.116405) : (TetR'=TetR-5);
+	[] TetR=45 -> 0.00356924 : (TetR'=TetR+5) + kd / (0.104257) : (TetR'=TetR-5);
+	[] TetR=50 -> 0.00291824 : (TetR'=TetR+5) + kd / (0.0944069) : (TetR'=TetR-5);
+	[] TetR=55 -> 0.00243022 : (TetR'=TetR+5) + kd / (0.0862582) : (TetR'=TetR-5);
+	[] TetR=60 -> 0.00205503 : (TetR'=TetR+5) + kd / (0.0794051) : (TetR'=TetR-5);
+	[] TetR=65 -> 0.00176041 : (TetR'=TetR+5) + kd / (0.0735612) : (TetR'=TetR-5);
+	[] TetR=70 -> 0.00152485 : (TetR'=TetR+5) + kd / (0.0685189) : (TetR'=TetR-5);
+	[] TetR=75 -> 0.00133357 : (TetR'=TetR+5) + kd / (0.0641236) : (TetR'=TetR-5);
+	[] TetR=80 -> 0.00117613 : (TetR'=TetR+5) + kd / (0.0602585) : (TetR'=TetR-5);
+	[] TetR=85 -> 0.001045 : (TetR'=TetR+5) + kd / (0.0568329) : (TetR'=TetR-5);
+	[] TetR=90 -> 0.000934628 : (TetR'=TetR+5) + kd / (0.0537759) : (TetR'=TetR-5);
+	[] TetR=95 -> 0.000840857 : (TetR'=TetR+5) + kd / (0.051031) : (TetR'=TetR-5);
+	[] TetR=100 -> kd / (0.0485528) : (TetR'=TetR-5);
+
+endmodule

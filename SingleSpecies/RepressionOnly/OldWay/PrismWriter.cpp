@@ -42,9 +42,9 @@ PrismModel << std::endl;
 for(int j = 0; j < (InitialValue / epsilon); j++)
 {
 
-PrismModel << "	[] TetR=" << (epsilon * j) << " -> p_t * " << (10 / epsilon) << " : " 
-     << "(TetR'=TetR+" << epsilon
-     << ");" << std::endl;
+	PrismModel << "	[] TetR=" << (epsilon * j) << " -> p_t * " << (10.0 / epsilon) << " : " 
+	<< "(TetR'=TetR+" << epsilon
+	<< ");" << std::endl;
 
 }
 

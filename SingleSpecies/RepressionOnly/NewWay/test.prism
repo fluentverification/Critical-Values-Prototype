@@ -6,30 +6,25 @@ module TetR_def
 
 	TetR : [0..MAX] init 0;
 
-	[] TetR=0 -> 0.0863874 : (TetR'=TetR+4);
-	[] TetR=4 -> 0.0250887 : (TetR'=TetR+4);
-	[] TetR=8 -> 0.00995375 : (TetR'=TetR+4);
-	[] TetR=12 -> 0.00517079 : (TetR'=TetR+4);
-	[] TetR=16 -> 0.00313827 : (TetR'=TetR+4);
-	[] TetR=20 -> 0.00209986 : (TetR'=TetR+4);
-	[] TetR=24 -> 0.00150123 : (TetR'=TetR+4);
-	[] TetR=28 -> 0.00112569 : (TetR'=TetR+4);
-	[] TetR=32 -> 0.000874976 : (TetR'=TetR+4);
-	[] TetR=36 -> 0.000699419 : (TetR'=TetR+4);
-	[] TetR=40 -> 0.000571772 : (TetR'=TetR+4);
-	[] TetR=44 -> 0.000476085 : (TetR'=TetR+4);
-	[] TetR=48 -> 0.000402527 : (TetR'=TetR+4);
-	[] TetR=52 -> 0.000344772 : (TetR'=TetR+4);
-	[] TetR=56 -> 0.000298601 : (TetR'=TetR+4);
-	[] TetR=60 -> 0.000261113 : (TetR'=TetR+4);
-	[] TetR=64 -> 0.000230261 : (TetR'=TetR+4);
-	[] TetR=68 -> 0.000204568 : (TetR'=TetR+4);
-	[] TetR=72 -> 0.000182945 : (TetR'=TetR+4);
-	[] TetR=76 -> 0.000164576 : (TetR'=TetR+4);
-	[] TetR=80 -> 0.00014884 : (TetR'=TetR+4);
-	[] TetR=84 -> 0.000135256 : (TetR'=TetR+4);
-	[] TetR=88 -> 0.00012345 : (TetR'=TetR+4);
-	[] TetR=92 -> 0.000113124 : (TetR'=TetR+4);
-	[] TetR=96 -> 0.000104041 : (TetR'=TetR+4);
+	[] TetR=0 -> 0.567335 : (TetR'=TetR+5);
+	[] TetR=5 -> 0.134328 : (TetR'=TetR+5);
+	[] TetR=10 -> 0.0514419 : (TetR'=TetR+5);
+	[] TetR=15 -> 0.0264918 : (TetR'=TetR+5);
+	[] TetR=20 -> 0.0160337 : (TetR'=TetR+5);
+	[] TetR=25 -> 0.0107178 : (TetR'=TetR+5);
+	[] TetR=30 -> 0.00765987 : (TetR'=TetR+5);
+	[] TetR=35 -> 0.00574346 : (TetR'=TetR+5);
+	[] TetR=40 -> 0.00446459 : (TetR'=TetR+5);
+	[] TetR=45 -> 0.00356924 : (TetR'=TetR+5);
+	[] TetR=50 -> 0.00291824 : (TetR'=TetR+5);
+	[] TetR=55 -> 0.00243022 : (TetR'=TetR+5);
+	[] TetR=60 -> 0.00205503 : (TetR'=TetR+5);
+	[] TetR=65 -> 0.00176041 : (TetR'=TetR+5);
+	[] TetR=70 -> 0.00152485 : (TetR'=TetR+5);
+	[] TetR=75 -> 0.00133357 : (TetR'=TetR+5);
+	[] TetR=80 -> 0.00117613 : (TetR'=TetR+5);
+	[] TetR=85 -> 0.001045 : (TetR'=TetR+5);
+	[] TetR=90 -> 0.000934628 : (TetR'=TetR+5);
+	[] TetR=95 -> 0.000840857 : (TetR'=TetR+5);
 
 endmodule
