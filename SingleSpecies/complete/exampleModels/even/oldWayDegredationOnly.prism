@@ -1,0 +1,21 @@
+ctmc
+
+const double kd = 0.0075;
+
+const int MAX = 81;
+
+module TetR_def
+
+ TetR : [0..MAX] init MAX;
+
+ [] TetR=9 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=18 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=27 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=36 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=45 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=54 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=63 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=72 -> kd * TetR / 9 :(TetR'=TetR-9);
+ [] TetR=81 -> kd * TetR / 9 :(TetR'=TetR-9);
+
+endmodule

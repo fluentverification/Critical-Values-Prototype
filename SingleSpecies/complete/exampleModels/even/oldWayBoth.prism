@@ -1,0 +1,26 @@
+ctmc
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const double kd = 0.0075;
+
+const int MAX = 72;
+
+module TetR_def
+
+ TetR : [0..MAX] init 36;
+
+ [] TetR=0 -> p_t * 1 : (TetR'=TetR+8);
+ [] TetR=8 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=16 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=24 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=32 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=40 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=48 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=56 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=64 -> p_t * 1 : (TetR'=TetR+8) + kd * TetR / 8 : (TetR'=TetR-8);
+ [] TetR=72 -> kd * TetR / 8 : (TetR'=TetR-8);
+
+endmodule

@@ -1,0 +1,25 @@
+ctmc
+
+const double kd = 0.0075;
+
+const int MAX = 72;
+
+module TetR_def
+
+ TetR : [0..MAX] init 36;
+
+ [] TetR=0 -> (0.385364) : (TetR'=TetR+6);
+ [] TetR=6 -> (0.0793969) : (TetR'=TetR+6) + kd / (2.45) : (TetR'=TetR-6);
+ [] TetR=12 -> (0.0298471) : (TetR'=TetR+6) + kd / (0.653211) : (TetR'=TetR-6);
+ [] TetR=18 -> (0.0153087) : (TetR'=TetR+6) + kd / (0.391897) : (TetR'=TetR-6);
+ [] TetR=24 -> (0.00925502) : (TetR'=TetR+6) + kd / (0.28085) : (TetR'=TetR-6);
+ [] TetR=30 -> (0.00618483) : (TetR'=TetR+6) + kd / (0.219029) : (TetR'=TetR-6);
+ [] TetR=36 -> (0.00442025) : (TetR'=TetR+6) + kd / (0.179572) : (TetR'=TetR-6);
+ [] TetR=42 -> (0.00331471) : (TetR'=TetR+6) + kd / (0.152184) : (TetR'=TetR-6);
+ [] TetR=48 -> (0.00257699) : (TetR'=TetR+6) + kd / (0.132054) : (TetR'=TetR-6);
+ [] TetR=54 -> (0.00206049) : (TetR'=TetR+6) + kd / (0.116633) : (TetR'=TetR-6);
+ [] TetR=60 -> (0.00168491) : (TetR'=TetR+6) + kd / (0.10444) : (TetR'=TetR-6);
+ [] TetR=66 -> (0.00140332) : (TetR'=TetR+6) + kd / (0.0945566) : (TetR'=TetR-6);
+ [] TetR=72 -> kd / (0.0863831) : (TetR'=TetR-6);
+
+endmodule
