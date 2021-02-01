@@ -1,0 +1,11 @@
+This file specifies the many options possible in writing a complete Toggle switch model.
+
+
+./program <name of model> [options for TetR] [options for LacI]
+
+options for each species:
+
+ 1. initial value
+ 2. value for subspecies (aTc or IPTG)
+ 3. old method or new method
+ 4. values
