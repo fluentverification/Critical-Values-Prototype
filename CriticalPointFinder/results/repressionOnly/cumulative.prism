@@ -1,0 +1,24 @@
+ctmc
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 0;
+
+ [] TetR=0 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=1 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=2 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=3 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=4 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=5 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=6 -> p_t * 5 : (TetR'=TetR+2);
+ [] TetR=8 -> p_t * 2.5 : (TetR'=TetR+4);
+ [] TetR=12 -> p_t * 0.2 : (TetR'=TetR+50);
+ [] TetR=62 -> p_t * 0.26315789 : (TetR'=TetR+38);
+
+endmodule

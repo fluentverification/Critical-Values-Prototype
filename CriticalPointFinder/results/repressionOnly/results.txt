@@ -1,0 +1,63 @@
+Using the threshold generation prototype tool, regarding the reaction rate of LacI
+To generate thresholds for a 
+Repression only,
+100 total count LacI,
+with 0 IPTG model
+
+
+10 generated thresholds using the "cumulative" technique
+Using a threshold value of .005:
+
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+8 
+12 
+62 
+
+10 genearated thresholds using the "non-cumulative" technique
+Using a threshold value of .0025:
+
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10
+
+RESULTS:
+Control Model
+   For the control model, that is 101 states, 0-100:
+   Result: 
+      0.8057554207403307 (value in the initial state)
+
+Cumulative Model
+   Some tweeking was needed, the max value was some random memory address
+   and needed to be changed to 100,
+   Also I needed to add the 62 threshold value, the state was there but no
+   transition existed to get to 100
+   11 states total
+   Result: 
+      0.8407368957604767 (value in the initial state)
+
+Non-Cumulative Model
+   Also some tweeking was needed
+   11 states total
+   Result: 
+      0.999870492010496 (value in the initial state)
+
+Random Model
+   I thought this would be interesting to add, 
+   I ranomly selected 11 states (I meant to grab 10)
+   12 states total
+   Result: 
+      0.6725923905859837 (value in the initial state)
+
