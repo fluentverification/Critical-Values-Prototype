@@ -33,6 +33,7 @@ int main(int argc, char *argv[] )
 
     M.points = pt;
     M.spacing = SSWriter::distance::uneven;
+    M.max = *std::max_element(pt.begin(), pt.end());
 
   }
 

@@ -47,22 +47,31 @@ public:
   std::vector<int> points;
 
 
-  //ctor
+  /* Ctors */
+  //ctor for even thresholds??? maybe
   SSWriter(std::string file, enum method type)
             : fileName(file)
             , type(type)
   { }
 
+  //general ctor, I dont think this is used
   SSWriter(std::string file)
 	    : fileName(file)
   { }
 
+  //Ctor for uneven thresholds, vector passed in.
+  //This is obselete, the object is created using an above method
+  //and then manually initiallized in Main.cpp
   SSWriter(std::string file, enum method type, std::vector<int> pt)
 	    : points(pt)
 	    , type(type)
 	    , fileName(file)
 	    , spacing(SSWriter::distance::uneven)
-  { }
+  { 
+    max = *std::max_element(pt.begin(), pt.end());
+    std::cout << "Max value is " << max << "\n";
+  }
+
 
   //public methods 
 
