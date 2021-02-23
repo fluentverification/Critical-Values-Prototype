@@ -1,0 +1,117 @@
+ctmc
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const double kd = 0.0075;
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 0;
+
+ [] TetR=0 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=1 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=2 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=3 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=4 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=5 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=6 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=7 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=8 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=9 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=10 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=11 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=12 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=13 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=14 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=15 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=16 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=17 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=18 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=19 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=20 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=21 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=22 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=23 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=24 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=25 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=26 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=27 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=28 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=29 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=30 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=31 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=32 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=33 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=34 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=35 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=36 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=37 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=38 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=39 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=40 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=41 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=42 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=43 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=44 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=45 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=46 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=47 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=48 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=49 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=50 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=51 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=52 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=53 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=54 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=55 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=56 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=57 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=58 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=59 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=60 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=61 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=62 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=63 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=64 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=65 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=66 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=67 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=68 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=69 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=70 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=71 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=72 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=73 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=74 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=75 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=76 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=77 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=78 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=79 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=80 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=81 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=82 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=83 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=84 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=85 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=86 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=87 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=88 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=89 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=90 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=91 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=92 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=93 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=94 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=95 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=96 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=97 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=98 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=99 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=100 -> kd * TetR / 1 : (TetR'=TetR-1);
+
+endmodule

@@ -1,0 +1,64 @@
+Using the threshold generation prototype tool, regarding the reaction rate of LacI
+To generate thresholds for a 
+Repression only,
+100 total count LacI,
+with 0 IPTG model
+
+
+12 generated thresholds using the "additive" technique
+Using a threshold value of .005:
+
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+8 
+12 
+62 
+91
+100
+
+12 genearated thresholds using the "derivative" technique
+Using a threshold value of .0025:
+
+0
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+91
+100
+
+RESULTS:
+Control Model
+   For the control model, that is 101 states, 0-100:
+   Result: 
+      0.8057554207403307 (value in the initial state)
+
+Additive Model
+   12 states total
+   Result:
+      0.9098941070693646 (12 states with 91)
+     compared to 
+      0.8407368957604767 (11 states as before)
+
+Derivative Model
+   12 states total
+   Result: 
+      0.9998833111596757 (12 states with 91)
+     compared to
+      0.999870492010496 (11 states as before) 
+
+Random Model
+   12 states total
+   Result: 
+      0.6725923905859837 (value in the initial state)
+
