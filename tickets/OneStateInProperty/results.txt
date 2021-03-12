@@ -1,0 +1,102 @@
+Using the threshold generation prototype tool, regarding the reaction rate of LacI
+To generate thresholds for a 
+Repression only,
+100 total count LacI,
+with 0 IPTG model
+adding one extra state inside the property range
+
+12 generated thresholds using the "additive" technique
+Using a threshold value of .005:
+
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+8 
+12 
+62
+100
+
+0 		90	100
+
+RESULTS:
+Control Model
+   For the control model, that is 101 states, 0-100:
+   Result: 
+		       0.8642944694942541
+
+Raw thresholds
+   For untampered thresholds from the model state generator
+   Result:
+      Original Method: 0.8407370179698077
+      Ceska    Method: 0.5319744970649579
+
+The following pertain to where the extra state is added
+90
+   Result:
+      Original Method: 0.9173077601770129
+      Ceska    Method: 0.6790591353202146
+
+91
+   Result:
+      Original Method: 0.9098941070693646
+      Ceska    Method: 0.6630905941971567
+
+92
+   Result:
+      Original Method: 0.9023749133669532
+      Ceska    Method: 0.6473552791380948
+
+93
+   Result:
+      Original Method: 0.8947742340680802
+      Ceska    Method: 0.6318771138085394
+
+94
+   Result:
+      Original Method: 0.8871107019369963
+      Ceska    Method: 0.6166779732038048
+
+95
+   Result:
+      Original Method: 0.8794034752055588
+      Ceska    Method: 0.6017712251358044
+
+96
+   Result:
+      Original Method: 0.8716699530527876
+      Ceska    Method: 0.5871707324121888
+
+97
+   Result:
+      Original Method: 0.8639230333817044
+      Ceska    Method: 0.5728867667139861
+
+98
+   Result:
+      Original Method: 0.8561782676645937
+      Ceska    Method: 0.5589221048911825
+
+99
+   Result:
+      Original Method: 0.8484454416890306
+      Ceska    Method: 0.5452852232497825
+
+Evenly spacing thresholds
+   Result:
+      Original Method: 0.8071458394076306
+      Ceska    Method: 0.6939602487906495
+
+
+My resulting conclusion is that when deciding where to add an extra state, if you want the 
+resulting probability to be less than what you are currently getting then you have two options:
+1. is to add it to the left hand side of the property line (the property line being the line at which
+a state is inside the property range)
+2. add the state inside the property.
+If you are adding it outside the property range, then the closer the state is to the property line then
+lower the result will be. The further away from the property line then the higher the probability
+will be. 
+If the state to be added is inside the property range then the closer to the property

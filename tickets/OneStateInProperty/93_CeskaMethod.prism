@@ -1,0 +1,21 @@
+ctmc
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 0;
+
+ [] TetR=0 -> 4.97487 : (TetR'=TetR+1);
+ [] TetR=1 -> 4.41964 : (TetR'=TetR+1);
+ [] TetR=2 -> 3.31104 : (TetR'=TetR+1);
+ [] TetR=3 -> 2.33491 : (TetR'=TetR+1);
+ [] TetR=4 -> 1.65275 : (TetR'=TetR+1);
+ [] TetR=5 -> 1.20146 : (TetR'=TetR+1);
+ [] TetR=6 -> 0.39239 : (TetR'=TetR+2);
+ [] TetR=8 -> 0.0995375 : (TetR'=TetR+4);
+ [] TetR=12 -> 0.000511476 : (TetR'=TetR+50);
+ [] TetR=62 -> 0.000212303 : (TetR'=TetR+31);
+ [] TetR=93 -> 0.000613044 : (TetR'=TetR+7);
+
+endmodule
