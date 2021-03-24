@@ -5,6 +5,15 @@
 #include <stdio.h>
 #include "SSWriter.hpp"
 
+bool contains (std::vector<int> points, int test)
+{
+  for (int i = 0; i < points.size(); i++)
+  {
+    if (test == points.at(i)) return true;
+  }
+  return false;
+}
+
 void SSWriter::writeFile()
 {
 
@@ -27,6 +36,17 @@ void SSWriter::writeFile()
       this->points.push_back(0);
     }
 
+    // remove duplicates from list
+    std::vector<int> temp = points;
+    points.clear();
+    for (int i = 0; i < temp.size(); i++)
+    {
+      if (!contains( points, temp.at(i) ))
+      {
+        points.emplace_back( temp.at(i) );
+      }
+    }
+    
     // sort the vector list
     std::sort (points.begin(), points.end());
 

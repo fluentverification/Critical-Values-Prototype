@@ -7,16 +7,16 @@
 #name=""
 
 #Max value for Prism models
-max=100
+#max=100
 
 #variables needed:
-method=(0 1)
+#method=(0)
 
 #These are the epsilon values for the evenly spaced models
-epsilon_values=(100 50 25 20 10 5 4 2 1)
+#epsilon_values=(100 50 25 20 10 5 4 2 1)
 
 #These are the number of thresholds for unevenly spaced models
-uneven_values=(1 2 4 5 10 20 25 50 100)
+#uneven_values=(1 2 4 5 10 20 25 50 100)
 
 
 #the property to be tested (see the -p flag for manually entering in property)
@@ -81,37 +81,29 @@ fi
 #Run Prism 
 ###################################
 
-if "$verbose"; then
-	echo "starting even threshold check"
-fi
+#if "$verbose"; then
+#	echo "starting even threshold check"
+#fi
 
 
 # Run for even thresholds
-for m in "${method[@]}"; do
+for (( i = 1; i < 100; i++ )); do
    
+
 	#Print status
 	if "$verbose"; then
-		echo " ->Starting model check on method $m"
+		echo "  ->Checking model with state $i "
 	fi
 
-	#Run prism for each value of set values
-	for i in "${epsilon_values[@]}"; do 
+	#Run Prism for next value of set values 
+	./SingleSpeciesWriter temp.prism 5 -v 0 "$i" 15 31 50 100
 
-		#Print status
-		if "$verbose"; then
-			echo "  ->Checking model with $i values"
-		fi
+	Result="$(prism temp.prism $property | grep "Result: " | sed s/^Result:.// | sed s/".(value in the initial state)"//)"
 
-		#Run Prism for next value of set values 
-		../../SingleSpeciesWriter temp.prism "$m" -s "$max" "$i"
+	echo "$Result" >> "$DIR"/result.txt
 
-		Result="$(prism temp.prism $property | grep "Result: " | sed s/^Result:.// | sed s/".(value in the initial state)"//)"
+	rm temp.prism
 
-		echo "$Result $(expr $max / $i)" >> "$DIR/method_$m"_Even.txt
-
-		rm temp.prism
-
-	done
 
 done
 
