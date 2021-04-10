@@ -9,3 +9,8 @@ options for each species:
  2. value for subspecies (aTc or IPTG)
  3. old method or new method
  4. values
+
+./Writer Golden_Model -s 0 100 5 -v 1 0 20 30 50 90 100
+
+This will result in a Toggle switch model with TetR having standard spacing 0 to 100 with spacing of 5
+LacI will use Ceska method with states 0 20 30 50 90 100

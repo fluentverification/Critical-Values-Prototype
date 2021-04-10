@@ -85,6 +85,7 @@ fi
 #	echo "starting even threshold check"
 #fi
 
+rm "$DIR"/per_state_values.txt
 
 # Run for even thresholds
 for (( i = 1; i < 100; i++ )); do
@@ -96,11 +97,11 @@ for (( i = 1; i < 100; i++ )); do
 	fi
 
 	#Run Prism for next value of set values 
-	./SingleSpeciesWriter temp.prism 5 -v 0 "$i" 15 31 50 100
+	./SingleSpeciesWriter temp.prism 5 -v 0 "$i" 15 30 50 100
 
 	Result="$(prism temp.prism $property | grep "Result: " | sed s/^Result:.// | sed s/".(value in the initial state)"//)"
 
-	echo "$Result" >> "$DIR"/result.txt
+	echo "$Result" >> "$DIR"/per_state_values.txt
 
 	rm temp.prism
 

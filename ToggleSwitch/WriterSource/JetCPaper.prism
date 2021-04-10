@@ -1,0 +1,52 @@
+ctmc
+
+const int aTc = 0;
+
+formula p_l = 0.99/(0.25*(LacI/(0.0496277915632754*aTc + 1))*(LacI/(0.0496277915632754*aTc + 1)) + 1.99);
+
+const int MAX_TetR = 80;
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const int MAX_LacI = 50;
+
+const double kd = 0.0075;
+
+module TetR_def
+
+  TetR : [0..MAXTetR] init 0;
+
+ [] TetR=0 -> p_t * 2 : (TetR'=TetR+5);
+ [] TetR=5 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=10 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=15 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=20 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=25 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=30 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=35 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=40 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=45 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=50 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=55 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=60 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=65 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=70 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=75 -> p_t * 2 : (TetR'=TetR+5) + kd * TetR / 5 : (TetR'=TetR-5);
+ [] TetR=80 -> kd * TetR / 5 : (TetR'=TetR-5);
+
+endmodule
+
+module LacI_def
+
+  LacI : [0..MAXLacI] init 0;
+
+ [] LacI=0 -> p_l * 1 : (LacI'=LacI+10);
+ [] LacI=10 -> p_l * 1 : (LacI'=LacI+10) + kd * LacI / 10 : (LacI'=LacI-10);
+ [] LacI=20 -> p_l * 1 : (LacI'=LacI+10) + kd * LacI / 10 : (LacI'=LacI-10);
+ [] LacI=30 -> p_l * 1 : (LacI'=LacI+10) + kd * LacI / 10 : (LacI'=LacI-10);
+ [] LacI=40 -> p_l * 1 : (LacI'=LacI+10) + kd * LacI / 10 : (LacI'=LacI-10);
+ [] LacI=50 -> kd * LacI / 10 : (LacI'=LacI-10);
+
+endmodule

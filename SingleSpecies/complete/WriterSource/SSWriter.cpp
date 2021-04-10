@@ -335,7 +335,7 @@ void SSWriter::writeOB(std::fstream& Model)
   //else the object has uneven thresholds
   else
   {
-    for(int j = 0; j < points.size() - 1; j++)
+    for(int j = 0; j < points.size() ; j++)
     {
       //for first line
       if(j == 0)
@@ -346,7 +346,7 @@ void SSWriter::writeOB(std::fstream& Model)
               << (10.0 / static_cast<double>(diff)) << " : (TetR'=TetR+" << diff << ");" << std::endl;
       }
       //last line
-      else if ( j == points.size() - 1)
+      else if ( j == points.size() -1 )
       {
         int diff = points.at(j) - points.at(j-1);
 
@@ -406,7 +406,7 @@ void SSWriter::writeNB(std::fstream& Model)
   //else the object has uneven thresholds
   else
   {
-    for(int j = 0; j < points.size() - 1; j++)
+    for(int j = 0; j < points.size(); j++)
     {
       //for first line
       if(j == 0)

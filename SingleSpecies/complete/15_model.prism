@@ -1,0 +1,20 @@
+ctmc
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const double kd = 0.0075;
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 50;
+
+ [] TetR=0 -> p_t * 0.666667 : (TetR'=TetR+15);
+ [] TetR=15 -> p_t * 0.285714 : (TetR'=TetR+35) + kd * TetR / 15 : (TetR'=TetR-15);
+ [] TetR=50 -> p_t * 0.2 : (TetR'=TetR+50) + kd * TetR / 35 : (TetR'=TetR-35);
+ [] TetR=100 -> kd * TetR / 50 : (TetR'=TetR-50);
+
+endmodule
