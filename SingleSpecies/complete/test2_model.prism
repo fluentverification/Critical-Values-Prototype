@@ -1,0 +1,16 @@
+ctmc
+
+const double kd = 0.0075;
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 50;
+
+ [] TetR=0 -> (0.00450317) : (TetR'=TetR+30);
+ [] TetR=30 -> 0.00123637 : (TetR'=TetR+20) + kd / (3.99499) : (TetR'=TetR-30);
+ [] TetR=50 -> 0.000137346 : (TetR'=TetR+50) + kd / (0.504218) : (TetR'=TetR-20);
+ [] TetR=100 -> kd / (0.688172) : (TetR'=TetR-50);
+
+endmodule
