@@ -1,0 +1,34 @@
+ctmc
+
+const int aTc = 0;
+
+formula p_t = 0.99/(0.25*(LacI/(0.0496277915632754*aTc + 1))*(LacI/(0.0496277915632754*aTc + 1)) + 1.99);
+
+const int MAXTetR = 100;
+
+const int IPTG = 0;
+
+formula p_l = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const int MAXLacI = 100;
+
+const double kd = 0.0075;
+
+module TetR_def
+
+  TetR : [0..MAXTetR] init 0;
+
+ [] TetR=0 -> p_t * 0.2 : (TetR'=TetR+50);
+ [] TetR=50 -> p_t * 0.2 : (TetR'=TetR+50) + kd * TetR / 50 : (TetR'=TetR-50);
+ [] TetR=100 -> kd * TetR / 50 : (TetR'=TetR-50);
+
+endmodule
+
+module LacI_def
+
+  LacI : [0..MAXLacI] init 0;
+
+ [] LacI=0 -> p_l * 0.1 : (LacI'=LacI+100);
+ [] LacI=100 -> kd * LacI / 100 : (LacI'=LacI-100);
+
+endmodule

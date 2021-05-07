@@ -127,12 +127,12 @@ void ToggleWriter::writeHeader(std::fstream& Model)
   {
     Model << "const int aTc = 0;" << std::endl;
     Model << std::endl;
-    Model << "formula p_l = 0.99/(0.25*(LacI/(0.0496277915632754*aTc + 1))*(LacI/(0.0496277915632754*aTc + 1)) + 1.99);" << std::endl;
+    Model << "formula p_t = 0.99/(0.25*(LacI/(0.0496277915632754*aTc + 1))*(LacI/(0.0496277915632754*aTc + 1)) + 1.99);" << std::endl;
     Model << std::endl;
   }
 
   //TetR max
-  Model << "const int MAX_TetR = " << this->TetR_max << ";" << std::endl;
+  Model << "const int MAXTetR = " << this->TetR_max << ";" << std::endl;
   Model << std::endl;
 
   //if LacI is JetC then include the formula
@@ -140,12 +140,12 @@ void ToggleWriter::writeHeader(std::fstream& Model)
   {
     Model << "const int IPTG = 0;" << std::endl;
     Model << std::endl;
-    Model << "formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);" << std::endl;
+    Model << "formula p_l = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);" << std::endl;
     Model << std::endl;
   }
 
   //LacI max
-  Model << "const int MAX_LacI = " << this->LacI_max << ";" << std::endl;
+  Model << "const int MAXLacI = " << this->LacI_max << ";" << std::endl;
   Model << std::endl;
 
   Model << "const double kd = 0.0075;" << std::endl;

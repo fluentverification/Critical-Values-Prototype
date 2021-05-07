@@ -4,7 +4,7 @@
 
 bool is_number(const std::string &name);
 
-//void printUsage();
+void printUsage();
 
 //bool runChecks(int argc, char *argv[]);
 
@@ -80,6 +80,11 @@ int main(int argc, char *argv[] )
 int main(int argc, char *argv[] )
 {
   //if(!runChecks(argc, argv)) return -1;
+  if (argc < 4)
+  {
+    printUsage();
+    return -1;
+  }
 
   int arg_i = 4;
 
@@ -148,17 +153,12 @@ int main(int argc, char *argv[] )
 }
 
 
-//
-//void printUsage()
-//{
-//  std::cout << "Correct usage: ./<program> <name> [Options for TetR] [Options for LacI]\n;
-//  std::cout << "Options for Species: <spacing> <method> [<values> : <total value> <epsilon>]\n"
-//  << "enum for model method:"
-//  << "\n 0. Jetc Method"
-//  << "\n 1. Ceska Method" << std::endl;
-//
-//  std::cout << "spacing: \n-s for standard spacing\n-v for uneven spacing" << std::endl;
-//}
+
+void printUsage()
+{
+  std::cout << "Correct usage: ./<program> <name> [Options for TetR] [Options for LacI]\n";
+}
+
 //
 //bool runChecks(int argc, char *argv[])
 //{
