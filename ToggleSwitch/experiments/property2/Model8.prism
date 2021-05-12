@@ -1,0 +1,57 @@
+ctmc
+
+const int aTc = 0;
+
+formula p_t = 0.99/(0.25*(LacI/(0.0496277915632754*aTc + 1))*(LacI/(0.0496277915632754*aTc + 1)) + 1.99);
+
+const int MAXTetR = 100;
+
+const int IPTG = 0;
+
+formula p_l = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const int MAXLacI = 100;
+
+const double kd = 0.0075;
+
+module TetR_def
+
+  TetR : [0..MAXTetR] init 0;
+
+ [] TetR=0 -> p_t * 10 : (TetR'=TetR+1);
+ [] TetR=1 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=2 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=3 -> p_t * 0.666667 : (TetR'=TetR+15) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=18 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 15 : (TetR'=TetR-15);
+ [] TetR=19 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=20 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=21 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=22 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=23 -> p_t * 0.135135 : (TetR'=TetR+74) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=97 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 74 : (TetR'=TetR-74);
+ [] TetR=98 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=99 -> p_t * 10 : (TetR'=TetR+1) + kd * TetR / 1 : (TetR'=TetR-1);
+ [] TetR=100 -> kd * TetR / 1 : (TetR'=TetR-1);
+
+endmodule
+
+module LacI_def
+
+  LacI : [0..MAXLacI] init 0;
+
+ [] LacI=0 -> p_l * 10 : (LacI'=LacI+1);
+ [] LacI=1 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=2 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=3 -> p_l * 0.294118 : (LacI'=LacI+34) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=37 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 34 : (LacI'=LacI-34);
+ [] LacI=38 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=39 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=40 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=41 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=42 -> p_l * 0.181818 : (LacI'=LacI+55) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=97 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 55 : (LacI'=LacI-55);
+ [] LacI=98 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=99 -> p_l * 10 : (LacI'=LacI+1) + kd * LacI / 1 : (LacI'=LacI-1);
+ [] LacI=100 -> kd * LacI / 1 : (LacI'=LacI-1);
+
+endmodule
