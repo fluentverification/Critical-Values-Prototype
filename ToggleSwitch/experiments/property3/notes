@@ -1,0 +1,28 @@
+
+# script 1 property based method (what order
+
+# script 2 cumulative thresholds (use max .004)
+
+for (i : species)
+ if i is in property
+  if not specified
+    then for i use script 1
+  else
+    use union method of 1 with 2
+ else 
+  use script 2 for i
+
+create model using the above specified methods
+
+
+50
+50 51
+49 50 51 52
+
+
+50 51
+49 52
+48 53
+47 54
+46 55
+
