@@ -26,55 +26,109 @@ set -e
 ### current state greater than the defined indicator? If yes then make
 ### the current state a threshold
 
-echo "|---- Method 1 -----------------------------|"
-Y=0
-Z=0
-indicator=".005"
-prevstate=0
-prevrate=0
-for XX in {0..120..1};
-do
-  currrate=$(echo "10/50 * ((.099/(1.99+((.5*$XX)^2)))*10 + \
-             (.099/(1.99+((.5*$Y)^2)))*10 + (.099/(1.99+((.5*$Z)^2)))*10)" \
-             | bc -l)
-
-  difference=$(echo "$prevrate - $currrate" | bc -l)
-  #echo $(abs $difference)
-
-  if (( $(echo " $(abs $difference) > $indicator" | bc -l) )); then
-    echo "$XX is a critical state "
-    prevstate=$XX
-    prevrate=$currrate
-  fi
-done
+#echo "|---- Method 1 -----------------------------|"
+#Y=0
+#Z=0
+#indicator=".005"
+#prevstate=0
+#prevrate=0
+#for XX in {0..120..1};
+#do
+#  currrate=$(echo "10/50 * ((.099/(1.99+((.5*$XX)^2)))*10 + \
+#             (.099/(1.99+((.5*$Y)^2)))*10 + (.099/(1.99+((.5*$Z)^2)))*10)" \
+#             | bc -l)
+#
+#  difference=$(echo "$prevrate - $currrate" | bc -l)
+#  #echo $(abs $difference)
+#
+#  if (( $(echo " $(abs $difference) > $indicator" | bc -l) )); then
+#    echo "$XX is a critical state "
+#    prevstate=$XX
+#    prevrate=$currrate
+#  fi
+#done
              
 ### Method 2: this method adds the difference to a running sum
 ### if that running sum is greater than the indicator then we make 
 ### a point and reset the running sum
-echo "|---- Method 2 -----------------------------|"
+#echo "|---- Method 2 -----------------------------|"
+#
+#Y=0
+#Z=0
+#indicator=$1
+#totalstates=1
+#prevrate=0
+#runningsum=0
+#for XX in {0..120..1};
+#do
+#  currrate=$(echo "10/50 * ((.099/(1.99+((.5*$XX)^2)))*10 + \
+#             (.099/(1.99+((.5*$Y)^2)))*10 + (.099/(1.99+((.5*$Z)^2)))*10)" \
+#             | bc -l)
+#
+#  difference=$(echo "$prevrate - $currrate" | bc -l)
+#  tempsum=$(echo "$(abs $difference) + $runningsum " | bc -l)
+#
+#  if (( $(echo " $tempsum > $indicator" | bc -l) )); then
+#    echo "$XX is a critical state "
+#    prevrate=$currrate
+#    runningsum=0
+#    totalstates=$(($totalstates + 1))
+#  else
+#    runningsum=$tempsum 
+#  fi
+#done
+#
+#echo "Total States: $totalstates"
 
-Y=0
-Z=0
-indicator=".0125"
-prevstate=0
+
+
+### EE in equation CC
+#indicator=$1
+#totalstates=1
+#prevrate=0
+#runningsum=0
+#for EE in {0..45..1};
+#do
+#  currrate=$(echo "((10 * .099)/(1.99 + (.5 * $EE)^2)) * 10/10" \
+#             | bc -l)
+#
+#  difference=$(echo "$prevrate - $currrate" | bc -l)
+#  tempsum=$(echo "$(abs $difference) + $runningsum " | bc -l)
+#
+#  if (( $(echo " $tempsum > $indicator" | bc -l) )); then
+#    echo "$EE is a critical state "
+#    prevrate=$currrate
+#    runningsum=0
+#    totalstates=$(($totalstates + 1))
+#  else
+#    runningsum=$tempsum 
+#  fi
+#done
+#
+#echo "Total States: $totalstates"
+
+### D in equation Y or Z
+indicator=$1
+totalstates=1
 prevrate=0
 runningsum=0
-for XX in {0..120..1};
+AA=0
+for D in {0..250..1};
 do
-  currrate=$(echo "10/50 * ((.099/(1.99+((.5*$XX)^2)))*10 + \
-             (.099/(1.99+((.5*$Y)^2)))*10 + (.099/(1.99+((.5*$Z)^2)))*10)" \
+  currrate=$(echo "(10*(0.099/(1.99+(0.5*$AA)^2)*10+0.099/(1.99+(0.5*$D)^2)*10)/30)" \
              | bc -l)
 
   difference=$(echo "$prevrate - $currrate" | bc -l)
   tempsum=$(echo "$(abs $difference) + $runningsum " | bc -l)
 
   if (( $(echo " $tempsum > $indicator" | bc -l) )); then
-    echo "$XX is a critical state "
-    prevstate=$XX
+    echo "$D is a critical state "
     prevrate=$currrate
     runningsum=0
+    totalstates=$(($totalstates + 1))
   else
     runningsum=$tempsum 
   fi
 done
 
+echo "Total States: $totalstates"

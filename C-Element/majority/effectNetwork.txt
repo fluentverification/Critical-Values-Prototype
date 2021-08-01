@@ -1,0 +1,32 @@
+## This file shows the relationship of each species on each of the other 
+## species
+
+## The format of the following looks like this:
+# X(Species in question): <Total number of values>: <The determined thresholds>
+#   Y(Species in which X has an effect in): (indicator) <values based on this equation>
+
+D: [6]: 
+  Y: (.105) 0 3 6 13 36 168 250
+  Z: (.105) 0 3 6 13 36 168 250
+  EE:
+
+Y: [5]:
+  D: (.095) 0 3 7 19 78 120
+
+Z: [5]:
+  D: (.095) 0 3 7 19 78 120
+
+CC: [15]:
+  None
+
+XX: [5]:
+  D: (.095) 0 3 7 19 78 120 
+
+EE: [15]:
+  CC: (.02) 0 1 2 3 4 5 6 7 9 11 14 18 24 24 45
+
+AA:
+  constant
+
+B:
+  constant
