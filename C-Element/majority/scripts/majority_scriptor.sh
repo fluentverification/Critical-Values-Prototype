@@ -6,11 +6,17 @@
 file="testmajority.prism"
 
 D_trs=(0 3 6 13 36 168 250)
+D_init=200
 Y_trs=(0 3 7 19 78 120)
+Y_init=0
 Z_trs=(0 3 7 19 78 120)
+Z_init=0
 CC_trs=(0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150)
-XX_trs=(0 120)
-EE_trs=(0 45)
+CC_init=120
+XX_trs=(0 3 7 19 78 120)
+XX_init=0
+EE_trs=(0 1 2 3 4 5 6 7 9 11 14 18 24 34 45)
+EE_init=0
 
 
 ######----- Model Start -----######
@@ -22,7 +28,6 @@ _MODEL_
 
 ######----- Module D -----######
 
-D_init=200
 D_max=250
 
 cat >> $file <<- _MODEL_
@@ -52,7 +57,6 @@ echo "" >> $file
 
 ######----- Module Y -----######
 
-Y_init=0
 Y_max=120
 
 cat >> $file <<- _MODEL_
@@ -83,7 +87,6 @@ echo "" >> $file
 
 ######----- Module Z -----######
 
-Z_init=0
 Z_max=120
 
 cat >> $file <<- _MODEL_
@@ -114,7 +117,6 @@ echo "" >> $file
 
 ######----- Module CC -----######
 
-CC_init=120
 CC_max=150
 
 cat >> $file <<- _MODEL_
@@ -145,7 +147,6 @@ echo "" >> $file
 
 ######----- Module XX -----######
 
-XX_init=0
 XX_max=120
 
 cat >> $file <<- _MODEL_
@@ -176,7 +177,6 @@ echo "" >> $file
 
 ######----- Module EE -----######
 
-EE_init=0
 EE_max=45
 
 cat >> $file <<- _MODEL_

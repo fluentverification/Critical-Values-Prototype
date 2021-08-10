@@ -87,10 +87,15 @@ set -e
 #totalstates=1
 #prevrate=0
 #runningsum=0
+#maxrate=0
 #for EE in {0..45..1};
 #do
-#  currrate=$(echo "((10 * .099)/(1.99 + (.5 * $EE)^2)) * 10/10" \
+#  currrate=$(echo "((10 * .099)/(1.99 + (.5 * $EE)^2)) * 10/1" \
 #             | bc -l)
+#
+#  if (( $( echo "$currrate > $maxrate" | bc -l) )); then
+#    maxrate=$currrate
+#  fi
 #
 #  difference=$(echo "$prevrate - $currrate" | bc -l)
 #  tempsum=$(echo "$(abs $difference) + $runningsum " | bc -l)
@@ -106,17 +111,22 @@ set -e
 #done
 #
 #echo "Total States: $totalstates"
+#echo "Max rate: $maxrate"
 
 ### D in equation Y or Z
 indicator=$1
 totalstates=1
 prevrate=0
 runningsum=0
+maxrate=0
 AA=0
 for D in {0..250..1};
 do
-  currrate=$(echo "(10*(0.099/(1.99+(0.5*$AA)^2)*10+0.099/(1.99+(0.5*$D)^2)*10)/30)" \
+  currrate=$(echo "(10*(0.099/(1.99+(0.5*$AA)^2)*10+0.099/(1.99+(0.5*$D)^2)*10))" \
              | bc -l)
+  if (( $( echo "$currrate > $maxrate" | bc -l) )); then
+    maxrate=$currrate
+  fi
 
   difference=$(echo "$prevrate - $currrate" | bc -l)
   tempsum=$(echo "$(abs $difference) + $runningsum " | bc -l)
@@ -132,3 +142,4 @@ do
 done
 
 echo "Total States: $totalstates"
+echo "Total States: $maxrate"
