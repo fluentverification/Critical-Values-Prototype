@@ -83,7 +83,7 @@ prev=0
 curr=0
 for next in "${S2_trs[@]}"
 do
-  repress="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*S3),(2)))*10)/$(expr $next - $curr)):(S1'=$next);"
+  repress="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*S3),(2)))*10)/$(expr $next - $curr)):(S2'=$next);"
 
   if [[ $next -eq 0 ]]; then 
     continue
@@ -274,6 +274,6 @@ echo "endmodule" >> $file
 ######----- Ending stuff -----######
 
 cat >> $file <<- _MODEL_
-const int AA=0; 
+const int AA=0;
 const int B=120;
 _MODEL_
