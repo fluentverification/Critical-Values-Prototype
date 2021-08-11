@@ -74,7 +74,7 @@ do
     #initial transition
     echo "  [] Y=0 -> (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$next):(Y'=$next);" >> $file
   else
-    echo "  [] Y=$curr -> (0.0075*Y/$(expr $curr - $prev)):(Y'=$prev) + (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$next):(Y'=$next);" >> $file
+    echo "  [] Y=$curr -> (0.0075*Y/$(expr $curr - $prev)):(Y'=$prev) + (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$(expr $next - $curr)):(Y'=$next);" >> $file
   fi
 
   prev=$curr
@@ -104,7 +104,7 @@ do
     #initial transition
     echo "  [] Z=0 -> (10*(0.099/(1.99+pow((0.5*B),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$next):(Z'=$next);" >> $file
   else
-    echo "  [] Z=$curr -> (0.0075*Z/$(expr $curr - $prev)):(Z'=$prev) + (10*(0.099/(1.99+pow((0.5*B),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$next):(Z'=$next);" >> $file
+    echo "  [] Z=$curr -> (0.0075*Z/$(expr $curr - $prev)):(Z'=$prev) + (10*(0.099/(1.99+pow((0.5*B),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/$( expr $next - $curr)):(Z'=$next);" >> $file
   fi
 
   prev=$curr
@@ -134,7 +134,7 @@ do
     #initial transition
     echo "  [] CC=0 -> (10*0.099/(1.99+pow((0.5*EE),(2)))*10/$next):(CC'=$next);" >> $file
   else
-    echo "  [] CC=$curr -> (0.0075*CC/$(expr $curr - $prev)):(CC'=$prev) + (10*0.099/(1.99+pow((0.5*EE),(2)))*10/$next):(CC'=$next);" >> $file
+    echo "  [] CC=$curr -> (0.0075*CC/$(expr $curr - $prev)):(CC'=$prev) + (10*0.099/(1.99+pow((0.5*EE),(2)))*10/$(expr $next - $curr)):(CC'=$next);" >> $file
   fi
 
   prev=$curr
@@ -164,7 +164,7 @@ do
     #initial transition
     echo "  [] XX=0 -> (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*B),(2)))*10)/$next):(XX'=$next);" >> $file
   else
-    echo "  [] XX=$curr -> (0.0075*XX/$(expr $curr - $prev)):(XX'=$prev) + (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*B),(2)))*10)/$next):(XX'=$next);" >> $file
+    echo "  [] XX=$curr -> (0.0075*XX/$(expr $curr - $prev)):(XX'=$prev) + (10*(0.099/(1.99+pow((0.5*AA),(2)))*10+0.099/(1.99+pow((0.5*B),(2)))*10)/$(expr $next - $curr)):(XX'=$next);" >> $file
   fi
 
   prev=$curr
@@ -194,7 +194,7 @@ do
     #initial transition
     echo "  [] EE=0 -> (10*0.099/(1.99+pow((0.5*D),(2)))*10/$next):(EE'=$next);" >> $file
   else
-    echo "  [] EE=$curr -> (0.0075*EE/$(expr $curr - $prev)):(EE'=$prev) + (10*0.099/(1.99+pow((0.5*D),(2)))*10/$next):(EE'=$next);" >> $file
+    echo "  [] EE=$curr -> (0.0075*EE/$(expr $curr - $prev)):(EE'=$prev) + (10*0.099/(1.99+pow((0.5*D),(2)))*10/$(expr $next - $curr)):(EE'=$next);" >> $file
   fi
 
   prev=$curr
