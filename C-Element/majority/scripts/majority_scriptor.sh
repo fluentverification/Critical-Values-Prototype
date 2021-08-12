@@ -5,17 +5,17 @@
 
 file="testmajority.prism"
 
-D_trs=(0 3 6 13 36 168 250)
+D_trs=(0 50 100 150 200 250)
 D_init=200
-Y_trs=(0 3 7 19 78 120)
+Y_trs=(0 30 60 90 120)
 Y_init=0
-Z_trs=(0 3 7 19 78 120)
+Z_trs=(0 30 60 90 120)
 Z_init=0
 CC_trs=(0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150)
 CC_init=120
-XX_trs=(0 3 7 19 78 120)
+XX_trs=(0 30 60 90 120)
 XX_init=0
-EE_trs=(0 1 2 3 4 5 6 7 9 11 14 18 24 34 45)
+EE_trs=(0 3 6 9 12 15 18 21 24 27 30 33 36 39 42 45)
 EE_init=0
 
 
@@ -23,7 +23,6 @@ EE_init=0
 
 cat > $file << _MODEL_
 ctmc
-
 _MODEL_
 
 ######----- Module D -----######
@@ -53,7 +52,6 @@ done
 
 echo "  [] D=$D_max -> (0.0075*D/$(expr $curr - $prev)):(D'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Module Y -----######
 
@@ -83,7 +81,6 @@ done
 
 echo "  [] Y=$Y_max -> (0.0075*Y/$(expr $curr - $prev)):(Y'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Module Z -----######
 
@@ -113,7 +110,6 @@ done
 
 echo "  [] Z=$Z_max -> (0.0075*Z/$(expr $curr - $prev)):(Z'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Module CC -----######
 
@@ -143,7 +139,6 @@ done
 
 echo "  [] CC=$CC_max -> (0.0075*CC/$(expr $curr - $prev)):(CC'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Module XX -----######
 
@@ -173,7 +168,6 @@ done
 
 echo "  [] XX=$XX_max -> (0.0075*XX/$(expr $curr - $prev)):(XX'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Module EE -----######
 
@@ -203,7 +197,6 @@ done
 
 echo "  [] EE=$EE_max -> (0.0075*EE/$(expr $curr - $prev)):(EE'=$prev);" >> $file
 echo "endmodule" >> $file 
-echo "" >> $file
 
 ######----- Ending stuff -----######
 
