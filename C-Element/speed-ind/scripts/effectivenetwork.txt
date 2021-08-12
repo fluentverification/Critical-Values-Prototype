@@ -1,1 +1,28 @@
+This effective network uses a tolerance value of .1
+S1:
+  S2:
 
+S2:
+  S3:
+  S4:
+
+S3:
+  S2:
+  Z:
+
+S4:
+  S3:
+  Z:
+
+Y:
+  S1:
+
+Z:
+  CC:
+
+CC:
+  none
+
+XX:
+  S1:
+  
