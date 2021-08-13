@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### This script Creates writes a majority model based on ###
-### arrays indicating thresholds for each module         ###
+### arrays indicating thresholds for $speciesh module         ###
 
 if [[ "$#" -ne 1 ]]; then
   echo "Please insert decimal value for tolerance"
@@ -11,48 +11,109 @@ fi
 file="testspeed-ind.prism"
 tolerance=$1
 
-eq="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10))"
+source "../../utils.sh"
+
+######              ######
+###  Species S1        ###
+######              ######
 species="S1"
 max=250
+S1_init=200
+eq="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10))"
 
 S1_trs=$(find_thresholds $eq $species $max $tolerance)
-S1_init=212
-
+S1_trs=("$S1_trs $S1_init")
+S1_trs=($(mysort "$S1_trs"))
 
 ######              ######
 ###  Species S2        ###
 ######              ######
-eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S2),(2)))*10)/15)"
 species="S2"
 max=100
+S2_init=0
+
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S2),(2)))*10)/15)"
 S2g1=$(find_thresholds $eq $species $max $tolerance)
 
 eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S2),(2)))*10)/40)"
-species="S2"
-max=100
 S2g2=$(find_thresholds $eq $species $max $tolerance)
-S2_trs=$(union $S2g1 $S2g2)
 
-S2_init=0
-S2_trs=$(add $S2_trs $S2_init)
+S2_trs=("$S2g1 $S2_init $S2g2")
+S2_trs=($(mysort "$S2_trs"))
 
-S3_trs=(0 2 4 6 9 15 28 64 120)
+######              ######
+###  Species S3        ###
+######              ######
+species="S3"
+max=150
 S3_init=120
 
-S4_trs=(0 2 4 6 9 15 28 64 120)
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S3),(2)))*10)/10)"
+S3g1=$(find_thresholds $eq $species $max $tolerance)
+
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S3),(2)))*10)/30)"
+S3g2=$(find_thresholds $eq $species $max $tolerance)
+
+S3_trs=("$S3g1 $S3_init $S3g2")
+S3_trs=($(mysort "$S3_trs"))
+
+######              ######
+###  Species S4        ###
+######              ######
+species="S4"
+max=120
 S4_init=0
 
-Y_trs=(0 2 4 6 9 15 28 64 90)
+eq="(10*(0.099/(1.99+pow((0.5*S4),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/15)"
+S4g1=$(find_thresholds $eq $species $max $tolerance)
+
+eq="(10*(0.099/(1.99+pow((0.5*S4),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/30)"
+S4g2=$(find_thresholds $eq $species $max $tolerance)
+
+S4_trs=("$S4g1 $S4_init $S4g2")
+S4_trs=($(mysort "$S4_trs"))
+
+######              ######
+###  Species Y         ###
+######              ######
+species="Y"
+max=90
 Y_init=0
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*Y),(2)))*10)/50)"
 
-Z_trs=(0 1 2 3 4 6 8 11 16 25 44 90)
+Y_trs=$(find_thresholds $eq $species $max $tolerance)
+Y_trs=("$Y_trs $Y_init")
+Y_trs=($(mysort "$Y_trs"))
+
+######              ######
+###  Species Z         ###
+######              ######
+species="Z"
+max=90
 Z_init=0
+eq="(10*0.099/(1.99+pow((0.5*Z),(2)))*10/40)"
 
+Z_trs=$(find_thresholds $eq $species $max $tolerance)
+Z_trs=("$Z_trs $Z_init")
+Z_trs=($(mysort "$Z_trs"))
+
+######              ######
+###  Species CC        ###
+######              ######
 CC_trs=(0 40 80 120)
 CC_init=120
 
-XX_trs=(0 2 4 6 9 15 28 64 90)
+######              ######
+###  Species XX        ###
+######              ######
+species="XX"
+max=90
 XX_init=0
+eq="(10*(0.099/(1.99+pow((0.5*XX),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/50)"
+
+XX_trs=$(find_thresholds $eq $species $max $tolerance)
+XX_trs=("$XX_trs $XX_init")
+XX_trs=($(mysort "$XX_trs"))
 
 
 ### MISC ###
