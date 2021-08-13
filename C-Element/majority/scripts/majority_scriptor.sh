@@ -3,21 +3,85 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for each module         ###
 
-file="testmajority.prism"
+if [[ "$#" -ne 1 ]]; then
+  echo "Please insert decimal value for tolerance"
+  exit
+fi
 
-D_trs=(0 2 4 6 7 9 13 15 28 29 64 92 212 250)
-D_init=212
-Y_trs=(0 3 6 13 35 120)
+file="testmajority.prism"
+tolerance=$1
+
+source "../../utils.sh"
+
+######              ######
+###  Species D        ###
+######              ######
+species="D"
+max=250
+D_init=200
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/30)"
+Dg1=$(find_thresholds $eq $species $max $tolerance)
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*D),(2)))*10)/30)"
+Dg2=$(find_thresholds $eq $species $max $tolerance)
+eq="(10*0.099/(1.99+pow((0.5*D),(2)))*10/3)"
+Dg3=$(find_thresholds $eq $species $max $tolerance)
+
+D_trs=("$Dg1 $Dg2 $Dg3 $D_init")
+D_trs=($(mysort "$D_trs"))
+
+######              ######
+###  Species Y        ###
+######              ######
+species="Y"
+max=120
 Y_init=0
-Z_trs=(0 3 6 13 35 120)
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*Y),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/50)"
+
+Y_trs=$(find_thresholds $eq $species $max $tolerance)
+Y_trs=("$D_trs $D_init")
+Y_trs=($(mysort "$D_trs"))
+
+######              ######
+###  Species Z        ###
+######              ######
+species="Z"
+max=120
 Z_init=0
-#CC_trs=(0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150)
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*Z),(2)))*10)/50)"
+
+Z_trs=$(find_thresholds $eq $species $max $tolerance)
+Z_trs=("$Z_trs $Z_init")
+Z_trs=($(mysort "$Z_trs"))
+
+######              ######
+###  Species CC        ###
+######              ######
 CC_trs=(0 30 60 90 120 150)
 CC_init=120
-XX_trs=(0 3 6 13 35 120)
+
+######              ######
+###  Species XX        ###
+######              ######
+species="XX"
+max=120
 XX_init=0
-EE_trs=(0 2 4 6 9 15 28 45)
+eq="(10*(0.099/(1.99+pow((0.5*XX),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/50)"
+
+XX_trs=$(find_thresholds $eq $species $max $tolerance)
+XX_trs=("$XX_trs $XX_init")
+XX_trs=($(mysort "$XX_trs"))
+
+######              ######
+###  Species EE        ###
+######              ######
+species="EE"
+max=45
 EE_init=0
+eq="(10*0.099/(1.99+pow((0.5*EE),(2)))*10/10)"
+
+EE_trs=$(find_thresholds $eq $species $max $tolerance)
+EE_trs=("$EE_trs $EE_init")
+EE_trs=($(mysort "$EE_trs"))
 
 
 ######----- Model Start -----######
