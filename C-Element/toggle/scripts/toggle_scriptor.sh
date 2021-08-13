@@ -3,28 +3,95 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for each module         ###
 
+if [[ "$#" -ne 1 ]]; then
+  echo "Please insert decimal value for tolerance"
+  exit
+fi
+
 file="testtoggle.prism"
+tolerance=$1
 
-D_trs=(0 2 4 6 9 15 28 64 80)
+source "../../utils.sh"
+
+######        ######
+###  Species D   ###
+######        ######
+species="D"
+max=80
 D_init=0
+eq="(10*(0.99/(1.99+pow((0.5*D),(2)))+0.99/(1.99+pow((0.5*0),(2))))/50)"
 
-Y_trs=(0 2 4 6 9 15 28 64 212 225)
-Y_init=212
+D_trs=$(find_thresholds $eq $species $max $tolerance)
+D_trs=("$D_trs $D_init")
+D_trs=($(mysort "$D_trs"))
 
-Z_trs=(0 1 2 3 4 6 8 9 15 16 25 28 44 64 90)
+######        ######
+###  Species Y   ###
+######        ######
+species="Y"
+max=225
+Y_init=195
+eq="(10*(0.99/(1.99+pow((0.5*0),(2)))+0.99/(1.99+pow((0.5*Y),(2))))/6)"
+
+Y_trs=$(find_thresholds $eq $species $max $tolerance)
+Y_trs=("$Y_trs $Y_init")
+Y_trs=($(mysort "$Y_trs"))
+
+######        ######
+###  Species Z   ###
+######        ######
+species="Z"
+max=90
 Z_init=0
+eq="(10*(0.99/(1.99+pow((0.5*0),(2)))+0.99/(1.99+pow((0.5*Z),(2))))/15)"
+Zg1=$(find_thresholds $eq $species $max $tolerance)
+eq="(10*0.99/(1.99+pow((0.5*Z),(2)))/30)"
+Zg2=$(find_thresholds $eq $species $max $tolerance)
 
+Z_trs=("$Zg1 $Zg2 $Z_init")
+Z_trs=($(mysort "$Z_trs"))
+
+######           ######
+###  Species Cout   ###
+######           ######
 Cout_trs=(0 30 60 90 120)
 Cout_init=120
 
-XX_trs=(0 2 4 6 9 15 28 64 80)
+######         ######
+###  Species XX   ###
+######         ######
+species="XX"
+max=80
 XX_init=0
+eq="(10*(0.99/(1.99+pow((0.5*XX),(2)))+0.99/(1.99+pow((0.5*0),(2))))/15)"
 
-FF_trs=(0 2 4 6 9 15 28 64 212 250)
+XX_trs=$(find_thresholds $eq $species $max $tolerance)
+XX_trs=("$XX_trs $XX_init")
+XX_trs=($(mysort "$XX_trs"))
+
+######         ######
+###  Species FF   ###
+######         ######
+species="FF"
+max=250
 FF_init=200
+eq="(10*(0.99/(1.99+pow((0.5*FF),(2)))+0.99/(1.99+pow((0.5*0),(2))))/6)"
 
-EE_trs=(0 2 4 6 9 15 28 64 80)
+FF_trs=$(find_thresholds $eq $species $max $tolerance)
+FF_trs=("$FF_trs $FF_init")
+FF_trs=($(mysort "$FF_trs"))
+
+######         ######
+###  Species EE   ###
+######         ######
+species="EE"
+max=80
 EE_init=0
+eq="(10*(0.99/(1.99+pow((0.5*0),(2)))+0.99/(1.99+pow((0.5*EE),(2))))/50)"
+
+EE_trs=$(find_thresholds $eq $species $max $tolerance)
+EE_trs=("$EE_trs $EE_init")
+EE_trs=($(mysort "$EE_trs"))
 
 
 #### MISC ####
