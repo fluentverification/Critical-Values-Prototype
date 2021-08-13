@@ -9,6 +9,13 @@ fi
 
 tolerance=$1
 
+###  Species CC in CC  ###
+######              ######
+eq="(0.0075*CC/10)"
+species="CC"
+max=150
+find_thresholds $eq $species $max $tolerance
+
 ######              ######
 ###  Species D in Y  ###
 ######              ######

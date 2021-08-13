@@ -3,13 +3,38 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for each module         ###
 
-file="testspeed-ind.prism"
+if [[ "$#" -ne 1 ]]; then
+  echo "Please insert decimal value for tolerance"
+  exit
+fi
 
-S1_trs=(0 2 4 6 9 15 28 64 212 250)
+file="testspeed-ind.prism"
+tolerance=$1
+
+eq="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10))"
+species="S1"
+max=250
+
+S1_trs=$(find_thresholds $eq $species $max $tolerance)
 S1_init=212
 
-S2_trs=(0 2 4 6 7 9 12 15 24 28 61 64 100)
+
+######              ######
+###  Species S2        ###
+######              ######
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S2),(2)))*10)/15)"
+species="S2"
+max=100
+S2g1=$(find_thresholds $eq $species $max $tolerance)
+
+eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*S2),(2)))*10)/40)"
+species="S2"
+max=100
+S2g2=$(find_thresholds $eq $species $max $tolerance)
+S2_trs=$(union $S2g1 $S2g2)
+
 S2_init=0
+S2_trs=$(add $S2_trs $S2_init)
 
 S3_trs=(0 2 4 6 9 15 28 64 120)
 S3_init=120
