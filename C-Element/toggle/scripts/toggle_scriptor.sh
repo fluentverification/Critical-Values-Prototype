@@ -5,32 +5,36 @@
 
 file="testtoggle.prism"
 
-D_trs=(0 20 40 60 80)
+D_trs=(0 2 4 6 9 15 28 64 80)
 D_init=0
-D_max=${D_trs[${#D_trs[@]}-1]}
 
-Y_trs=(0 15 30 45 60 75 90 105 120 135 150 165 180 195 210 225)
-Y_init=195
-Y_max=${Y_trs[${#Y_trs[@]}-1]}
+Y_trs=(0 2 4 6 9 15 28 64 212 225)
+Y_init=212
 
-Z_trs=(0 6 12 18 24 30 36 42 48 54 60 66 72 78 84 90)
+Z_trs=(0 1 2 3 4 6 8 9 15 16 25 28 44 64 90)
 Z_init=0
-Z_max=${Z_trs[${#Z_trs[@]}-1]}
 
 Cout_trs=(0 30 60 90 120)
 Cout_init=120
-Cout_max=${Cout_trs[${#Cout_trs[@]}-1]}
 
-XX_trs=(0 20 40 60 80)
+XX_trs=(0 2 4 6 9 15 28 64 80)
 XX_init=0
-XX_max=${XX_trs[${#XX_trs[@]}-1]}
 
-FF_trs=(0 50 100 150 200 250)
+FF_trs=(0 2 4 6 9 15 28 64 212 250)
 FF_init=200
-FF_max=${FF_trs[${#FF_trs[@]}-1]}
 
-EE_trs=(0 20 40 60 80)
+EE_trs=(0 2 4 6 9 15 28 64 80)
 EE_init=0
+
+
+#### MISC ####
+
+Y_max=${Y_trs[${#Y_trs[@]}-1]}
+Z_max=${Z_trs[${#Z_trs[@]}-1]}
+Cout_max=${Cout_trs[${#Cout_trs[@]}-1]}
+XX_max=${XX_trs[${#XX_trs[@]}-1]}
+FF_max=${FF_trs[${#FF_trs[@]}-1]}
+D_max=${D_trs[${#D_trs[@]}-1]}
 EE_max=${EE_trs[${#EE_trs[@]}-1]}
 
 ######----- Model Start -----######

@@ -5,38 +5,41 @@
 
 file="testspeed-ind.prism"
 
-S1_trs=(0 50 100 150 200 250)
-S1_init=200
-S1_max=${S1_trs[${#S1_trs[@]}-1]}
+S1_trs=(0 2 4 6 9 15 28 64 212 250)
+S1_init=212
 
-S2_trs=(0 10 20 30 40 50 60 70 80 90 100)
+S2_trs=(0 2 4 6 7 9 12 15 24 28 61 64 100)
 S2_init=0
-S2_max=${S2_trs[${#S2_trs[@]}-1]}
 
-S3_trs=(0 15 30 45 60 75 90 105 120 135 150)
+S3_trs=(0 2 4 6 9 15 28 64 120)
 S3_init=120
-S3_max=${S3_trs[${#S3_trs[@]}-1]}
 
-S4_trs=(0 40 80 120)
+S4_trs=(0 2 4 6 9 15 28 64 120)
 S4_init=0
-S4_max=${S4_trs[${#S4_trs[@]}-1]}
 
-Y_trs=(0 30 60 90)
+Y_trs=(0 2 4 6 9 15 28 64 90)
 Y_init=0
-Y_max=${Y_trs[${#Y_trs[@]}-1]}
 
-Z_trs=(0 30 60 90)
+Z_trs=(0 1 2 3 4 6 8 11 16 25 44 90)
 Z_init=0
-Z_max=${Z_trs[${#Z_trs[@]}-1]}
 
 CC_trs=(0 40 80 120)
 CC_init=120
-CC_max=${CC_trs[${#CC_trs[@]}-1]}
 
-XX_trs=(0 30 60 90)
+XX_trs=(0 2 4 6 9 15 28 64 90)
 XX_init=0
-XX_max=${XX_trs[${#XX_trs[@]}-1]}
 
+
+### MISC ###
+
+S1_max=${S1_trs[${#S1_trs[@]}-1]}
+S2_max=${S2_trs[${#S2_trs[@]}-1]}
+S3_max=${S3_trs[${#S3_trs[@]}-1]}
+S4_max=${S4_trs[${#S4_trs[@]}-1]}
+Y_max=${Y_trs[${#Y_trs[@]}-1]}
+Z_max=${Z_trs[${#Z_trs[@]}-1]}
+CC_max=${CC_trs[${#CC_trs[@]}-1]}
+XX_max=${XX_trs[${#XX_trs[@]}-1]}
 
 ######----- Model Start -----######
 
