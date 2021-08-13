@@ -96,3 +96,23 @@ getsecondpart () {
   eq=$(echo $eq | sed "s/[a-zA-Z]/0/g")
   echo $eq
 }
+
+#args: <prism equation> <species in question> <max> <tolerance>
+find_thresholds () {
+  if [[ $# -ne 4 ]]; then 
+    echo "Syntax error: $0"
+    exit
+  fi    
+
+  echo "### Finding Thresholds for $2 ###"
+
+  basheq=$(bashifyeq $1)
+  eq1=$(getfirstpart $basheq $2)
+  eq2=$(getsecondpart $basheq $2)
+  
+  indicator=$(findmax $eq1 $eq2 $3)
+  indicator=$( echo "$indicator * $4" | bc -l)
+  
+  print_thresholds $eq1 $eq2 $3 $indicator
+
+}

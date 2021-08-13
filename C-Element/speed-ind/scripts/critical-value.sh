@@ -12,25 +12,11 @@ tolerance=$1
 ######              ######
 ###  Species S1 in S2  ###
 ######              ######
-eq="(10*(0.099/(1.99+pow((0.5*XX),(2)))*10+0.099/(1.99+pow((0.5*Y),(2)))*10))"
-
-
-basheq=$(bashifyeq $eq)
-eq1=$(getfirstpart $basheq XX)
-eq2=$(getsecondpart $basheq XX)
-
-
-
+eq="(10*(0.099/(1.99+pow((0.5*S1),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/10)"
+species="S1"
 max=250
 
-indicator=$(findmax $eq1 $eq2 $max)
-indicator=$( echo "$indicator * $tolerance" | bc -l)
-
-echo "#### Species S1 in S2 ####"
-print_thresholds $eq1 $eq2 $max $indicator
-
-
-
+find_thresholds $eq $species $max $tolerance
 
 
 #######              ######
