@@ -39,7 +39,7 @@ print_thresholds () {
     tempsum=$(echo "$(abs $difference) + $runningsum" | bc -l)
 
     if (( $(echo " $tempsum > $indicator" | bc -l) )); then
-      echo "$XX is a critical state"
+      printf "$XX "
       prevrate=$rate
       runningsum=0
       totalstates=$(($totalstates + 1))
