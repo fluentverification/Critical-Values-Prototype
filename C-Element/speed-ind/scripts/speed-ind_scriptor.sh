@@ -3,13 +3,16 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for $speciesh module         ###
 
-if [[ "$#" -ne 1 ]]; then
-  echo "Please insert decimal value for tolerance"
+if [[ "$#" -ne 2 ]]; then
+  echo "Please insert decimal value for tolerance and the name for the output file"
   exit
 fi
 
-file="testspeed-ind.prism"
+file=$2
 tolerance=$1
+
+echo "Creating Speed-ind model with tolerance of $tolerance"
+echo "outputing results to $file"
 
 source "../../utils.sh"
 

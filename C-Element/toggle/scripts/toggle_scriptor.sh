@@ -3,13 +3,16 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for each module         ###
 
-if [[ "$#" -ne 1 ]]; then
-  echo "Please insert decimal value for tolerance"
+if [[ "$#" -ne 2 ]]; then
+  echo "Please insert decimal value for tolerance and name for file"
   exit
 fi
 
-file="testtoggle.prism"
+file=$2
 tolerance=$1
+
+echo "makeing toggle model with tolerance of $tolerance"
+echo "outputing to file: $file"
 
 source "../../utils.sh"
 

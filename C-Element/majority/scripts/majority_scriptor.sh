@@ -3,13 +3,18 @@
 ### This script Creates writes a majority model based on ###
 ### arrays indicating thresholds for each module         ###
 
-if [[ "$#" -ne 1 ]]; then
-  echo "Please insert decimal value for tolerance"
+if [[ "$#" -ne 2 ]]; then
+  echo "Please insert decimal value for tolerance and a name for the file"
+  echo "Example: <tolerance> <something.prism>"
   exit
 fi
 
-file="testmajority.prism"
+file=$2
 tolerance=$1
+
+echo "Generating Majority model with a fractional tolerance of $tolerance"
+echo "outputing file to $file"
+
 
 source "../../utils.sh"
 
@@ -38,8 +43,8 @@ Y_init=0
 eq="(10*(0.099/(1.99+pow((0.5*0),(2)))*10+0.099/(1.99+pow((0.5*Y),(2)))*10+0.099/(1.99+pow((0.5*0),(2)))*10)/50)"
 
 Y_trs=$(find_thresholds $eq $species $max $tolerance)
-Y_trs=("$D_trs $D_init")
-Y_trs=($(mysort "$D_trs"))
+Y_trs=("$Y_trs $Y_init")
+Y_trs=($(mysort "$Y_trs"))
 
 ######              ######
 ###  Species Z        ###
