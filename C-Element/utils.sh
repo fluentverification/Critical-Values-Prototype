@@ -30,7 +30,6 @@ print_thresholds () {
   totalstates=1
   prevrate=0
   runningsum=0
-  maxrate=0
   for XX in $(seq 0 $3);
   do
     rate=$(echo $1$XX$2 | bc -l) 
