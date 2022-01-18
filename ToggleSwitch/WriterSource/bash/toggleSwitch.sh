@@ -11,6 +11,17 @@ if [[ "$#" -ne 4 ]]; then
   exit
 fi
 
+###--- Local funcitons ---###
+
+
+mysort () {
+  a=( $@ )
+  b=( $(printf "%s\n" ${a[@]} | sort -nu ) )
+  while read XX; do
+   echo -n "$XX "
+  done <<< $b
+}
+
 ###--- Module characteristics ---###
 TetR_Max=$(echo $1 | awk -F ',' '{print $(NF)}')
 LacI_Max=$(echo $3 | awk -F ',' '{print $(NF)}')
@@ -22,6 +33,9 @@ IFS=' '
 
 read -a TetR_trs <<< $(echo $1 | sed 's/,/ /g')
 read -a LacI_trs <<< $(echo $3 | sed 's/,/ /g')
+
+TetR_trs=($(mysort "${TetR_trs[@]}"))
+LacI_trs=($(mysort "${LacI_trs[@]}"))
 
 ###--- Write preamble ---###
 cat << _EOF_ > $tmpfile
