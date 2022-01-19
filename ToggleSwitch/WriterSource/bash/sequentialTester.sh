@@ -4,24 +4,26 @@
 # that if the program terminates early for some reason
 # we can pick up where we left off.
 
-# 3 states on each species
-TETRFIXED=",0,50,1"
-LACIFIXED=",0,60,80,20"
+TETRFIXED=",0,50,1,2"
+LACIFIXED=",0,60,80,20,36"
 tempfile="/tmp/temp.prism"
 csl=$1
-
-###--- Gather Results ---###
-TETR=33
-LACI=67
-echo "./toggleSwitch.sh $TETR$TETRFIXED 0 $LACI$LACIFIXED 60" 
-./toggleSwitch.sh $TETR$TETRFIXED 0 $LACI$LACIFIXED 60
-exit
-
 
 ###--- Start Of Script---###
 
 for TETR in {0..50}; do
+  # Make sure we aren't checking models that we already have
+  # checked
+  if echo $TETRFIXED | grep -q $TETR ; then 
+    continue
+  fi
+
   for LACI in {0..80}; do
+    # Make sure we aren't checking models that we already have
+    # checked
+    if echo $LACIFIXED | grep -q $LACI ; then 
+      continue
+    fi
     # Make model
     ./toggleSwitch.sh $TETR$TETRFIXED 0 $LACI$LACIFIXED 60
     # Run Prism
