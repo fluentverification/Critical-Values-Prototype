@@ -23,8 +23,6 @@ mysort () {
 }
 
 ###--- Module characteristics ---###
-TetR_Max=$(echo $1 | awk -F ',' '{print $(NF)}')
-LacI_Max=$(echo $3 | awk -F ',' '{print $(NF)}')
 
 TetR_Init=$2
 LacI_Init=$4
@@ -36,6 +34,9 @@ read -a LacI_trs <<< $(echo $3 | sed 's/,/ /g')
 
 TetR_trs=($(mysort "${TetR_trs[@]}"))
 LacI_trs=($(mysort "${LacI_trs[@]}"))
+
+TetR_Max=$(echo ${TetR_trs[@]} | awk -F ' ' '{print $(NF)}')
+LacI_Max=$(echo ${LacI_trs[@]} | awk -F ' ' '{print $(NF)}')
 
 ###--- Write preamble ---###
 cat << _EOF_ > $tmpfile
