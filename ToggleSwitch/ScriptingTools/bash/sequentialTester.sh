@@ -8,8 +8,8 @@
 # is 3.383226110378722E-13
 
 # 3 states on each species
-TETRFIXED=",0,50,1,2,3,4,5"
-LACIFIXED=",0,60,80,20,36,77,45,26"
+TETRFIXED=",0,50,1,2,3,4,5,6"
+LACIFIXED=",0,60,80,20,36,77,45,26,69"
 tempfile="/tmp/temp.prism"
 csl=$1
 
