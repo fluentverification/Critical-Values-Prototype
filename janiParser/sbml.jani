@@ -1,0 +1,546 @@
+{
+    "actions": [
+        {
+            "name": "P1"
+        },
+        {
+            "name": "P2_d"
+        },
+        {
+            "name": "P2_p"
+        },
+        {
+            "name": "P3"
+        }
+    ],
+    "automata": [
+        {
+            "edges": [
+                {
+                    "action": "P1",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "TetR <- (TetR + 30)",
+                                    "ref": "TetR",
+                                    "value": {
+                                        "left": "TetR",
+                                        "op": "+",
+                                        "right": 30
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(TetR = 0)",
+                        "exp": {
+                            "left": "TetR",
+                            "op": "=",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1
+                    }
+                },
+                {
+                    "action": "P2_d",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "TetR <- (TetR - 30)",
+                                    "ref": "TetR",
+                                    "value": {
+                                        "left": "TetR",
+                                        "op": "-",
+                                        "right": 30
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(TetR = 30)",
+                        "exp": {
+                            "left": "TetR",
+                            "op": "=",
+                            "right": 30
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1
+                    }
+                },
+                {
+                    "action": "P2_p",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "TetR <- (TetR + 70)",
+                                    "ref": "TetR",
+                                    "value": {
+                                        "left": "TetR",
+                                        "op": "+",
+                                        "right": 70
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(TetR = 30)",
+                        "exp": {
+                            "left": "TetR",
+                            "op": "=",
+                            "right": 30
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1
+                    }
+                },
+                {
+                    "action": "P3",
+                    "destinations": [
+                        {
+                            "assignments": [
+                                {
+                                    "comment": "TetR <- (TetR - 70)",
+                                    "ref": "TetR",
+                                    "value": {
+                                        "left": "TetR",
+                                        "op": "-",
+                                        "right": 70
+                                    }
+                                }
+                            ],
+                            "location": "l",
+                            "probability": {
+                                "comment": "(1 / 1)",
+                                "exp": 1
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(TetR = 100)",
+                        "exp": {
+                            "left": "TetR",
+                            "op": "=",
+                            "right": 100
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "1",
+                        "exp": 1
+                    }
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "TetR_def",
+            "variables": []
+        },
+        {
+            "edges": [
+                {
+                    "action": "P1",
+                    "destinations": [
+                        {
+                            "location": "l",
+                            "probability": {
+                                "comment": "((p_t / 5) / (p_t / 5))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "args": [],
+                                            "function": "p_t",
+                                            "op": "call"
+                                        },
+                                        "op": "/",
+                                        "right": 5
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "args": [],
+                                            "function": "p_t",
+                                            "op": "call"
+                                        },
+                                        "op": "/",
+                                        "right": 5
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "((p_t / 5) > 0)",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "args": [],
+                                    "function": "p_t",
+                                    "op": "call"
+                                },
+                                "op": "/",
+                                "right": 5
+                            },
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(p_t / 5)",
+                        "exp": {
+                            "left": {
+                                "args": [],
+                                "function": "p_t",
+                                "op": "call"
+                            },
+                            "op": "/",
+                            "right": 5
+                        }
+                    }
+                },
+                {
+                    "action": "P2_d",
+                    "destinations": [
+                        {
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((3/400 * TetR) / 50) / ((3/400 * TetR) / 50))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 0.0075,
+                                            "op": "*",
+                                            "right": "TetR"
+                                        },
+                                        "op": "/",
+                                        "right": 50
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.0075,
+                                            "op": "*",
+                                            "right": "TetR"
+                                        },
+                                        "op": "/",
+                                        "right": 50
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(((3/400 * TetR) / 50) > 0)",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "left": 0.0075,
+                                    "op": "*",
+                                    "right": "TetR"
+                                },
+                                "op": "/",
+                                "right": 50
+                            },
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((3/400 * TetR) / 50)",
+                        "exp": {
+                            "left": {
+                                "left": 0.0075,
+                                "op": "*",
+                                "right": "TetR"
+                            },
+                            "op": "/",
+                            "right": 50
+                        }
+                    }
+                },
+                {
+                    "action": "P2_p",
+                    "destinations": [
+                        {
+                            "location": "l",
+                            "probability": {
+                                "comment": "((p_t / 5) / (p_t / 5))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "args": [],
+                                            "function": "p_t",
+                                            "op": "call"
+                                        },
+                                        "op": "/",
+                                        "right": 5
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "args": [],
+                                            "function": "p_t",
+                                            "op": "call"
+                                        },
+                                        "op": "/",
+                                        "right": 5
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "((p_t / 5) > 0)",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "args": [],
+                                    "function": "p_t",
+                                    "op": "call"
+                                },
+                                "op": "/",
+                                "right": 5
+                            },
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "(p_t / 5)",
+                        "exp": {
+                            "left": {
+                                "args": [],
+                                "function": "p_t",
+                                "op": "call"
+                            },
+                            "op": "/",
+                            "right": 5
+                        }
+                    }
+                },
+                {
+                    "action": "P3",
+                    "destinations": [
+                        {
+                            "location": "l",
+                            "probability": {
+                                "comment": "(((3/400 * TetR) / 50) / ((3/400 * TetR) / 50))",
+                                "exp": {
+                                    "left": {
+                                        "left": {
+                                            "left": 0.0075,
+                                            "op": "*",
+                                            "right": "TetR"
+                                        },
+                                        "op": "/",
+                                        "right": 50
+                                    },
+                                    "op": "/",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.0075,
+                                            "op": "*",
+                                            "right": "TetR"
+                                        },
+                                        "op": "/",
+                                        "right": 50
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "guard": {
+                        "comment": "(((3/400 * TetR) / 50) > 0)",
+                        "exp": {
+                            "left": {
+                                "left": {
+                                    "left": 0.0075,
+                                    "op": "*",
+                                    "right": "TetR"
+                                },
+                                "op": "/",
+                                "right": 50
+                            },
+                            "op": ">",
+                            "right": 0
+                        }
+                    },
+                    "location": "l",
+                    "rate": {
+                        "comment": "((3/400 * TetR) / 50)",
+                        "exp": {
+                            "left": {
+                                "left": 0.0075,
+                                "op": "*",
+                                "right": "TetR"
+                            },
+                            "op": "/",
+                            "right": 50
+                        }
+                    }
+                }
+            ],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "reaction_rates",
+            "variables": []
+        }
+    ],
+    "constants": [
+        {
+            "name": "IPTG",
+            "type": "int",
+            "value": 0
+        },
+        {
+            "name": "kd",
+            "type": "real",
+            "value": 0.0075
+        },
+        {
+            "name": "MAX",
+            "type": "int",
+            "value": 100
+        }
+    ],
+    "features": [
+        "derived-operators",
+        "functions"
+    ],
+    "functions": [
+        {
+            "body": {
+                "left": 0.99,
+                "op": "/",
+                "right": {
+                    "left": {
+                        "left": {
+                            "left": 0.25,
+                            "op": "*",
+                            "right": {
+                                "left": "TetR",
+                                "op": "/",
+                                "right": 1
+                            }
+                        },
+                        "op": "*",
+                        "right": {
+                            "left": "TetR",
+                            "op": "/",
+                            "right": 1
+                        }
+                    },
+                    "op": "+",
+                    "right": 1.99
+                }
+            },
+            "name": "p_t",
+            "parameters": [],
+            "type": "real"
+        }
+    ],
+    "jani-version": 1,
+    "name": "3state",
+    "properties": [],
+    "restrict-initial": {
+        "exp": true
+    },
+    "system": {
+        "elements": [
+            {
+                "automaton": "TetR_def"
+            },
+            {
+                "automaton": "reaction_rates"
+            }
+        ],
+        "syncs": [
+            {
+                "result": "P1",
+                "synchronise": [
+                    "P1",
+                    "P1"
+                ]
+            },
+            {
+                "result": "P2_d",
+                "synchronise": [
+                    "P2_d",
+                    "P2_d"
+                ]
+            },
+            {
+                "result": "P2_p",
+                "synchronise": [
+                    "P2_p",
+                    "P2_p"
+                ]
+            },
+            {
+                "result": "P3",
+                "synchronise": [
+                    "P3",
+                    "P3"
+                ]
+            }
+        ]
+    },
+    "type": "ctmc",
+    "variables": [
+        {
+            "initial-value": 0,
+            "name": "TetR",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 100
+            }
+        }
+    ]
+}
