@@ -1,0 +1,34 @@
+ctmc
+
+const int IPTG = 0;
+
+formula p_t = 0.99/(0.25*(TetR/(0.0496277915632754*IPTG + 1))*(TetR/(0.0496277915632754*IPTG + 1)) + 1.99);
+
+const double kd = 0.0075;
+
+const int MAX = 100;
+
+module TetR_def
+
+ TetR : [0..MAX] init 0;
+
+// [P1] TetR=0 -> p_t / 5: (TetR'=TetR+50);
+// [P3] TetR=100 -> kd * TetR / 50 : (TetR'=TetR-50);
+//[P2] TetR=50 -> p_t / 5 : (TetR'=TetR+50) + kd * TetR / 50 : (TetR'=TetR-50);
+
+ [P1] TetR=0 -> (TetR'=TetR+30);
+ [P2_p] TetR=30 -> (TetR'=TetR+70);
+ [P2_d] TetR=30 -> (TetR'=TetR-30);
+ [P3] TetR=100 -> (TetR'=TetR-70);
+
+endmodule
+
+
+module reaction_rates
+
+ [P1] (p_t / 5) > 0 -> p_t / 5 : true;
+ [P2_p] (p_t / 5) > 0 -> p_t / 5 : true;
+ [P2_d] (kd * TetR / 50) > 0 -> (kd * TetR / 50) : true;
+ [P3] (kd * TetR / 50) > 0 -> (kd * TetR / 50) : true;
+
+endmodule

@@ -1,0 +1,56 @@
+ctmc
+
+const int MAX_AMOUNT = 100;
+
+const int TetR_MAX = 100;
+module TetR
+
+  TetR : [0..TetR_MAX] init 0;
+
+
+  //Degradation_TetR
+  [Degradation_TetR] TetR > 0 -> (TetR'=TetR-100);
+
+  //Complex_C2
+  [Complex_C2] TetR > 0 -> (TetR'=TetR-100);
+
+  //Production_TetR
+  [Production_P1] TetR < TetR_MAX -> (TetR'=TetR+100);
+
+endmodule
+
+
+module P1
+  P1 : [0..MAX_AMOUNT] init 2;
+endmodule
+
+
+module C2
+
+  C2 : [0..MAX_AMOUNT] init 0;
+
+  [Complex_C2] C2 <= C2_MAX-1 -> (C2'=C2+1);
+
+  [Degradation_C2] C2 > 0 -> (C2'=C2-1);
+
+endmodule
+
+
+
+module reaction_rates
+
+  [Degradation_TetR] (kd*TetR) > 0 -> (kd*TetR) : true;
+
+  [Complex_C2] ((kc_f*(func(pow,TetR,nc_TetR))*(func(pow,aTc,nc_aTc)))-(kc_r*C2)) > 0 -> ((kc_f*(func(pow,TetR,nc_TetR))*(func(pow,aTc,nc_aTc)))-(kc_r*C2)) : true;
+
+  [Production_P1] ((P1*ko*(ko_f/ko_r)*nr)/(1+((ko_f/ko_r)*nr)+(func(pow,((kr_f/kr_r)*LacI),nc)))) > 0 -> ((P1*ko*(ko_f/ko_r)*nr)/(1+((ko_f/ko_r)*nr)+(func(pow,((kr_f/kr_r)*LacI),nc)))) : true;
+
+  [Degradation_C2] (kd*C2) > 0 -> (kd*C2) : true;
+
+endmodule
+
+
+
+rewards "TetR" true : TetR; endrewards
+rewards "C2" true : C2; endrewards
+rewards "P1" true : P1; endrewards
