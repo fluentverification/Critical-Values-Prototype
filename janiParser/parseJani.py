@@ -4,7 +4,7 @@ import json
 import sys
 import subprocess
 
-DEBUG = True
+DEBUG = False
 
 ###### Utils #######
 def runEQ(eq):
@@ -18,21 +18,55 @@ def debug(somestring):
   if DEBUG == True:
     print(somestring)
 
+def isDebug():
+  global DEBUG
+  return DEBUG
+
+###### Reaction Rate class #####
+class ReactionRate:
+  def __init__(self, rate, sync, val):
+    self.rate = rate
+    self.sync = sync
+    self.val = val
+
 ###### Class Module #######
 class Module:
-  def __init__(self, name):
+  def __init__(self, name, var):
     self.name = name
+    self.var = var
     self.productionRates = []  # Production rate for 1 molecule
     self.degradationRates = [] # degradation rate for 1 modecule
-    self.states = []
+    self.states = set() 
+    self.allReactions = []
 
   def makeModule(self):
-    print("module " + self.name) 
-    for prod in self.productionRates:
-      print("  production  " + prod)
-    for deg in self.degradationRates:
-      print("  degradation " + deg)
-    print("endmodule // " + self.name) 
+    print("module " + self.name + '\n') 
+    print("  " + self.name + " : [" + str(self.var.minimum) + ".." 
+          + str(self.var.maximum) + "] init " + str(self.var.initial) + ";\n")
+
+    # for each production state:
+    statelist = list(self.states) 
+    statelist.sort()
+    curr = 0
+    prev = 0
+    for nextval in statelist:
+      if nextval == 0:
+        continue
+      else:
+        for prod in self.productionRates:
+          print("  [" + prod.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(nextval) + ");" )
+          rr = str("  [" + prod.sync + "_" + str(curr) + "] (" + prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " > 0 : true;")
+          self.allReactions.append(rr)
+        for deg in self.degradationRates:
+          print("  [" + deg.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(prev) + ");" )
+          rr = str("  [" + deg.sync + "_" + str(curr) + "] (" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " > 0 : true;")
+          self.allReactions.append(rr)
+      
+      prev = curr
+      curr = nextval
+
+      
+    print("\nendmodule // " + self.name) 
 
 ###### Class Variable #######
 # The purpose of this class is to behave as a struct to hold
@@ -61,11 +95,28 @@ class AbstractModel:
     for x in self.modules:
       self.modules[x].makeModule()
       print()
+    self.__makeRRModule()
 
   def printModules(self):
     for x in self.modules:
       print(x)
 
+  def printModuleStates(self):
+    print("Printing module states:")
+    for x in self.modules:
+      print("For module " + x + ":")
+      for state in self.modules[x].states:
+        print(state)
+
+  def __makeRRModule(self):
+    print("module reaction_rates\n")
+    for x in self.modules:
+      print("  // module: " + x)
+      for y in self.modules[x].allReactions:
+        print(y)
+      print()
+
+    print("endmodule //reaction_rates\n")
 
   def __fillVars(self, eq):
     result = eq
@@ -87,10 +138,9 @@ class AbstractModel:
     # 2nd: Use maxchange and tol to determine distance between two states
     debug("Thresholds for " + var.variable + ":")
     delta = tol * maxchange 
-    thresholds = set()
-    thresholds.add(var.minimum)
-    thresholds.add(var.maximum)
-    thresholds.add(var.initial)
+    self.modules[var.variable].states.add(var.minimum)
+    self.modules[var.variable].states.add(var.maximum)
+    self.modules[var.variable].states.add(var.initial)
 
     temp = eq.replace(var.variable, str(var.initial))
     prevrate = runEQ(temp)
@@ -103,16 +153,11 @@ class AbstractModel:
 
       if tempsum > delta:
         #debug("\t" + str(current))
-        thresholds.add(current)
+        self.modules[var.variable].states.add(current)
         prevrate = rate
         runningsum = 0.0
       else:
         runningsum = tempsum
-
-    global DEBUG
-    if DEBUG:
-      for state in thresholds:
-        print(state)
 
   # This function takes in a tolerance and determines
   # the Thresholds for each module
@@ -120,8 +165,9 @@ class AbstractModel:
     for module in self.modules:
       for rate in self.modules[module].productionRates:
         # replace static variables
-        fixed = self.__fillVars(rate)
-        # vary leftover variables
+        fixed = self.__fillVars(rate.rate)
+        # vary leftover variables 
+        # this is where the thresholds are determined
         # TODO: this only accounts for equations with one variable
         # make it account for the possibility for two or more
         for x in self.variables: 
@@ -129,6 +175,8 @@ class AbstractModel:
           if(fixed.find(var.variable) != -1):
             self.__determineThresholds(var, fixed, tol)
             #print(var.variable + " ::: " + fixed)
+    
+    # now we have the thresholds, we need to 
 
 #################################
 #########    Main    ############
@@ -136,8 +184,8 @@ class AbstractModel:
 
 n = len(sys.argv)
 
-if n != 2:
-  print("Please provide file to be parsed")
+if n != 3:
+  print("Please provide file to be parsed and a tolerance")
   quit()
 
 filename = sys.argv[1]
@@ -220,7 +268,7 @@ with open(filename, 'r') as janiFile:
             if sync == edge["action"]: # if the sync corresponds to the edge
               modname = edge["destinations"][0]["assignments"][0]["ref"]
               if not modname in myAbstract.modules:
-                newmod = Module(edge["destinations"][0]["assignments"][0]["ref"]) 
+                newmod = Module(edge["destinations"][0]["assignments"][0]["ref"], allvars[modname])
                 myAbstract.modules[modname] = newmod
                 # if the variable has a corresponding reaction rate to some
                 # sort of repression/degradation, then it is marked not necessary 
@@ -228,10 +276,12 @@ with open(filename, 'r') as janiFile:
 
               mod = myAbstract.modules[modname]
               amount = edge["destinations"][0]["assignments"][0]["value"]["right"]
+              rr = ReactionRate(reactionRates[sync], sync, amount)
               if edge["destinations"][0]["assignments"][0]["value"]["op"] == "+":
-                mod.productionRates.append(reactionRates[sync] + " / " + str(amount) )
+                mod.productionRates.append(rr)
+                #mod.productionRates.append(reactionRates[sync] + " / " + str(amount) )
               else:
-                mod.degradationRates.append(reactionRates[sync] + " / " + str(amount))
+                mod.degradationRates.append(rr)
 
     myAbstract.variables = allvars
 
@@ -255,8 +305,8 @@ with open(filename, 'r') as janiFile:
 
   #### make abstractions ####
     
-  myAbstract.makeAbstract(.5)
-  
-  #myAbstract.makeModel()
+  myAbstract.makeAbstract(float(sys.argv[2]))
   #myAbstract.printModules()
+  #myAbstract.printModuleStates()
+  myAbstract.makeModel()
 
