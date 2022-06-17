@@ -1,5 +1,5 @@
-#!/bin/python3
-
+#!/bin/python3 
+import argparse
 import json
 import sys
 import subprocess
@@ -37,12 +37,31 @@ class Module:
     self.productionRates = []  # Production rate for 1 molecule
     self.degradationRates = [] # degradation rate for 1 modecule
     self.states = set() 
+    self.manualstates = set()
     self.allReactions = []
+
+  def addStates(self, someset):
+    for x in someset:
+      self.states.add(x)
+
+  def inquireStates(self):
+    print("Inquiring input states")
+    inputarray = [ int(x) for x in input().split() ] # take multiple input as state
+    self.addStates(inputarray)
 
   def makeModule(self):
     print("module " + self.name + '\n') 
     print("  " + self.name + " : [" + str(self.var.minimum) + ".." 
           + str(self.var.maximum) + "] init " + str(self.var.initial) + ";\n")
+
+    # if states hasn't been populated then we need to check if manual states have been
+    # added
+    if len(self.states) == 0:
+      # first, add the variables initial, min, and max as states
+      self.states.add(self.var.initial)
+      self.states.add(self.var.minimum)
+      self.states.add(self.var.maximum)
+      self.addStates(self.manualstates)
 
     # for each production state:
     statelist = list(self.states) 
@@ -52,19 +71,32 @@ class Module:
     for nextval in statelist:
       if nextval == 0:
         continue
+      elif curr == 0: 
+        for prod in self.productionRates:
+          print("  [" + prod.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(nextval) + ");" )
+          rr = str("  [" + prod.sync + "_" + str(curr) + "] (" + prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " > 0 -> " 
+                  + "("+ prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " : true;")
+          self.allReactions.append(rr)
       else:
         for prod in self.productionRates:
           print("  [" + prod.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(nextval) + ");" )
-          rr = str("  [" + prod.sync + "_" + str(curr) + "] (" + prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " > 0 : true;")
+          rr = str("  [" + prod.sync + "_" + str(curr) + "] (" + prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " > 0 -> "
+                  + "(" + prod.rate + "*" + str(prod.val) + ") / " + str(nextval -  curr) + " : true;")
           self.allReactions.append(rr)
         for deg in self.degradationRates:
           print("  [" + deg.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(prev) + ");" )
-          rr = str("  [" + deg.sync + "_" + str(curr) + "] (" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " > 0 : true;")
+          rr = str("  [" + deg.sync + "_" + str(curr) + "] (" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " > 0 -> "
+                  + "(" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " : true;")
           self.allReactions.append(rr)
       
       prev = curr
       curr = nextval
 
+    for deg in self.degradationRates:
+      print("  [" + deg.sync + "_" + str(curr) + "] " + self.name + " = " + str(curr) + " -> (" + self.name + "\'=" + str(prev) + ");" )
+      rr = str("  [" + deg.sync + "_" + str(curr) + "] (" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " > 0 -> "
+              + "(" + deg.rate + "*" + str(deg.val) + ") / " + str(curr - prev) + " : true;")
+      self.allReactions.append(rr)
       
     print("\nendmodule // " + self.name) 
 
@@ -79,7 +111,7 @@ class Variable:
     self.initial = init
     # This means necessary to keep a specific value for this variable
     # during the __fillVars step
-    # for necessary==true it means this variable will be replaced with a constant
+    # for necessary == true it means this variable will be replaced with a constant
     # value during threshold generation because this variable doesn't have any transitions
     self.necessary = needed 
 
@@ -92,9 +124,19 @@ class AbstractModel:
     self.variables = dict()
 
   def makeModel(self):
+    print("ctmc\n")
+    # print constants
+    for y in self.variables:
+      if self.variables[y].necessary:
+        print("const double " + y + " = " + str(self.variables[y].initial) + ";")
+
+    print()
+
+    # make each module 
     for x in self.modules:
       self.modules[x].makeModule()
       print()
+    # make the reaction rate module last
     self.__makeRRModule()
 
   def printModules(self):
@@ -193,7 +235,7 @@ filename = sys.argv[1]
 myAbstract = AbstractModel(filename, "somefile.prism")
 
 with open(filename, 'r') as janiFile:
-  print("Parsing file: ", filename)
+  debug("Parsing file: " + filename)
   janiData = json.load(janiFile)
 
   # 1st grab the various automaton (modules)
@@ -216,7 +258,7 @@ with open(filename, 'r') as janiFile:
       
   # 3rd if reaction rates are in their own module then parse synchronizations
   if STYLE == STYLE_SBML:
-    print("Parsing Syncronized model")
+    debug("Parsing Syncronized model")
     
     # Get syncronizations from original model
     syncs = []
@@ -298,7 +340,7 @@ with open(filename, 'r') as janiFile:
 
   # else parse reaction rates of individual modules
   else:
-    print("Parsing Traditional Style model")
+    debug("Parsing Traditional Style model")
     for x in automatons:
       if x != "reaction_rates":
         myAbstract.modules.append(Module(x)) 
@@ -306,6 +348,7 @@ with open(filename, 'r') as janiFile:
   #### make abstractions ####
     
   myAbstract.makeAbstract(float(sys.argv[2]))
+  myAbstract.modules["_C"].addStates({0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70})
   #myAbstract.printModules()
   #myAbstract.printModuleStates()
   myAbstract.makeModel()
