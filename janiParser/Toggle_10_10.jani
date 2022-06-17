@@ -48,6 +48,109 @@
     ],
     "automata": [
         {
+            "edges": [],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l",
+                    "transient-values": [
+                        {
+                            "comment": "rewardmodel_D <- D",
+                            "ref": "rewardmodel_D",
+                            "value": "D"
+                        },
+                        {
+                            "comment": "rewardmodel_Y <- Y",
+                            "ref": "rewardmodel_Y",
+                            "value": "Y"
+                        },
+                        {
+                            "comment": "rewardmodel__E <- _E",
+                            "ref": "rewardmodel__E",
+                            "value": "_E"
+                        },
+                        {
+                            "comment": "rewardmodel__X <- _X",
+                            "ref": "rewardmodel__X",
+                            "value": "_X"
+                        },
+                        {
+                            "comment": "rewardmodel_FF <- FF",
+                            "ref": "rewardmodel_FF",
+                            "value": "FF"
+                        },
+                        {
+                            "comment": "rewardmodel_Z <- Z",
+                            "ref": "rewardmodel_Z",
+                            "value": "Z"
+                        },
+                        {
+                            "comment": "rewardmodel__C <- _C",
+                            "ref": "rewardmodel__C",
+                            "value": "_C"
+                        },
+                        {
+                            "comment": "rewardmodel_P8 <- P8",
+                            "ref": "rewardmodel_P8",
+                            "value": "P8"
+                        },
+                        {
+                            "comment": "rewardmodel_P1 <- P1",
+                            "ref": "rewardmodel_P1",
+                            "value": "P1"
+                        },
+                        {
+                            "comment": "rewardmodel_P2 <- P2",
+                            "ref": "rewardmodel_P2",
+                            "value": "P2"
+                        },
+                        {
+                            "comment": "rewardmodel_P3 <- P3",
+                            "ref": "rewardmodel_P3",
+                            "value": "P3"
+                        },
+                        {
+                            "comment": "rewardmodel_P4 <- P4",
+                            "ref": "rewardmodel_P4",
+                            "value": "P4"
+                        },
+                        {
+                            "comment": "rewardmodel_P5 <- P5",
+                            "ref": "rewardmodel_P5",
+                            "value": "P5"
+                        },
+                        {
+                            "comment": "rewardmodel_P6 <- P6",
+                            "ref": "rewardmodel_P6",
+                            "value": "P6"
+                        },
+                        {
+                            "comment": "rewardmodel_P7 <- P7",
+                            "ref": "rewardmodel_P7",
+                            "value": "P7"
+                        }
+                    ]
+                }
+            ],
+            "name": "_A",
+            "variables": []
+        },
+        {
+            "edges": [],
+            "initial-locations": [
+                "l"
+            ],
+            "locations": [
+                {
+                    "name": "l"
+                }
+            ],
+            "name": "B",
+            "variables": []
+        },
+        {
             "edges": [
                 {
                     "action": "Degradation_D",
@@ -127,84 +230,7 @@
             ],
             "locations": [
                 {
-                    "name": "l",
-                    "transient-values": [
-                        {
-                            "comment": "rewardmodel_D <- D",
-                            "ref": "rewardmodel_D",
-                            "value": "D"
-                        },
-                        {
-                            "comment": "rewardmodel_Y <- Y",
-                            "ref": "rewardmodel_Y",
-                            "value": "Y"
-                        },
-                        {
-                            "comment": "rewardmodel_E <- E",
-                            "ref": "rewardmodel_E",
-                            "value": "E"
-                        },
-                        {
-                            "comment": "rewardmodel__X <- _X",
-                            "ref": "rewardmodel__X",
-                            "value": "_X"
-                        },
-                        {
-                            "comment": "rewardmodel_FF <- FF",
-                            "ref": "rewardmodel_FF",
-                            "value": "FF"
-                        },
-                        {
-                            "comment": "rewardmodel_Z <- Z",
-                            "ref": "rewardmodel_Z",
-                            "value": "Z"
-                        },
-                        {
-                            "comment": "rewardmodel__C <- _C",
-                            "ref": "rewardmodel__C",
-                            "value": "_C"
-                        },
-                        {
-                            "comment": "rewardmodel_P8 <- P8",
-                            "ref": "rewardmodel_P8",
-                            "value": "P8"
-                        },
-                        {
-                            "comment": "rewardmodel_P1 <- P1",
-                            "ref": "rewardmodel_P1",
-                            "value": "P1"
-                        },
-                        {
-                            "comment": "rewardmodel_P2 <- P2",
-                            "ref": "rewardmodel_P2",
-                            "value": "P2"
-                        },
-                        {
-                            "comment": "rewardmodel_P3 <- P3",
-                            "ref": "rewardmodel_P3",
-                            "value": "P3"
-                        },
-                        {
-                            "comment": "rewardmodel_P4 <- P4",
-                            "ref": "rewardmodel_P4",
-                            "value": "P4"
-                        },
-                        {
-                            "comment": "rewardmodel_P5 <- P5",
-                            "ref": "rewardmodel_P5",
-                            "value": "P5"
-                        },
-                        {
-                            "comment": "rewardmodel_P6 <- P6",
-                            "ref": "rewardmodel_P6",
-                            "value": "P6"
-                        },
-                        {
-                            "comment": "rewardmodel_P7 <- P7",
-                            "ref": "rewardmodel_P7",
-                            "value": "P7"
-                        }
-                    ]
+                    "name": "l"
                 }
             ],
             "name": "D",
@@ -340,10 +366,10 @@
                         {
                             "assignments": [
                                 {
-                                    "comment": "E <- (E - 10)",
-                                    "ref": "E",
+                                    "comment": "_E <- (_E - 10)",
+                                    "ref": "_E",
                                     "value": {
-                                        "left": "E",
+                                        "left": "_E",
                                         "op": "-",
                                         "right": 10
                                     }
@@ -357,9 +383,9 @@
                         }
                     ],
                     "guard": {
-                        "comment": "(E > 9)",
+                        "comment": "(_E > 9)",
                         "exp": {
-                            "left": "E",
+                            "left": "_E",
                             "op": ">",
                             "right": 9
                         }
@@ -376,10 +402,10 @@
                         {
                             "assignments": [
                                 {
-                                    "comment": "E <- (E + 10)",
-                                    "ref": "E",
+                                    "comment": "_E <- (_E + 10)",
+                                    "ref": "_E",
                                     "value": {
-                                        "left": "E",
+                                        "left": "_E",
                                         "op": "+",
                                         "right": 10
                                     }
@@ -393,9 +419,9 @@
                         }
                     ],
                     "guard": {
-                        "comment": "(E <= (120 - 10))",
+                        "comment": "(_E <= (120 - 10))",
                         "exp": {
-                            "left": "E",
+                            "left": "_E",
                             "op": "≤",
                             "right": 110
                         }
@@ -415,7 +441,7 @@
                     "name": "l"
                 }
             ],
-            "name": "E",
+            "name": "_E",
             "variables": []
         },
         {
@@ -1072,30 +1098,30 @@
                         {
                             "location": "l",
                             "probability": {
-                                "comment": "((3/4000 * E) / (3/4000 * E))",
+                                "comment": "((3/4000 * _E) / (3/4000 * _E))",
                                 "exp": {
                                     "left": {
                                         "left": 0.00075,
                                         "op": "*",
-                                        "right": "E"
+                                        "right": "_E"
                                     },
                                     "op": "/",
                                     "right": {
                                         "left": 0.00075,
                                         "op": "*",
-                                        "right": "E"
+                                        "right": "_E"
                                     }
                                 }
                             }
                         }
                     ],
                     "guard": {
-                        "comment": "((3/4000 * E) > 0)",
+                        "comment": "((3/4000 * _E) > 0)",
                         "exp": {
                             "left": {
                                 "left": 0.00075,
                                 "op": "*",
-                                "right": "E"
+                                "right": "_E"
                             },
                             "op": ">",
                             "right": 0
@@ -1103,11 +1129,11 @@
                     },
                     "location": "l",
                     "rate": {
-                        "comment": "(3/4000 * E)",
+                        "comment": "(3/4000 * _E)",
                         "exp": {
                             "left": 0.00075,
                             "op": "*",
-                            "right": "E"
+                            "right": "_E"
                         }
                     }
                 },
@@ -1297,7 +1323,7 @@
                         {
                             "location": "l",
                             "probability": {
-                                "comment": "((((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 0) ^ 2))) / (((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 0) ^ 2))))",
+                                "comment": "((((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _A) ^ 2))) / (((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _A) ^ 2))))",
                                 "exp": {
                                     "left": {
                                         "left": {
@@ -1318,7 +1344,19 @@
                                             "right": 30
                                         },
                                         "op": "/",
-                                        "right": 1.99
+                                        "right": {
+                                            "left": 1.99,
+                                            "op": "+",
+                                            "right": {
+                                                "left": {
+                                                    "left": 0.5,
+                                                    "op": "*",
+                                                    "right": "_A"
+                                                },
+                                                "op": "pow",
+                                                "right": 2
+                                            }
+                                        }
                                     },
                                     "op": "/",
                                     "right": {
@@ -1340,14 +1378,26 @@
                                             "right": 30
                                         },
                                         "op": "/",
-                                        "right": 1.99
+                                        "right": {
+                                            "left": 1.99,
+                                            "op": "+",
+                                            "right": {
+                                                "left": {
+                                                    "left": 0.5,
+                                                    "op": "*",
+                                                    "right": "_A"
+                                                },
+                                                "op": "pow",
+                                                "right": 2
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     ],
                     "guard": {
-                        "comment": "((((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 0) ^ 2))) > 0)",
+                        "comment": "((((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _A) ^ 2))) > 0)",
                         "exp": {
                             "left": {
                                 "left": {
@@ -1368,7 +1418,19 @@
                                     "right": 30
                                 },
                                 "op": "/",
-                                "right": 1.99
+                                "right": {
+                                    "left": 1.99,
+                                    "op": "+",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.5,
+                                            "op": "*",
+                                            "right": "_A"
+                                        },
+                                        "op": "pow",
+                                        "right": 2
+                                    }
+                                }
                             },
                             "op": ">",
                             "right": 0
@@ -1376,7 +1438,7 @@
                     },
                     "location": "l",
                     "rate": {
-                        "comment": "(((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 0) ^ 2)))",
+                        "comment": "(((((P1 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _A) ^ 2)))",
                         "exp": {
                             "left": {
                                 "left": {
@@ -1396,7 +1458,19 @@
                                 "right": 30
                             },
                             "op": "/",
-                            "right": 1.99
+                            "right": {
+                                "left": 1.99,
+                                "op": "+",
+                                "right": {
+                                    "left": {
+                                        "left": 0.5,
+                                        "op": "*",
+                                        "right": "_A"
+                                    },
+                                    "op": "pow",
+                                    "right": 2
+                                }
+                            }
                         }
                     }
                 },
@@ -1406,7 +1480,7 @@
                         {
                             "location": "l",
                             "probability": {
-                                "comment": "((((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 120) ^ 2))) / (((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 120) ^ 2))))",
+                                "comment": "((((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * B) ^ 2))) / (((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * B) ^ 2))))",
                                 "exp": {
                                     "left": {
                                         "left": {
@@ -1427,7 +1501,19 @@
                                             "right": 30
                                         },
                                         "op": "/",
-                                        "right": 3601.99
+                                        "right": {
+                                            "left": 1.99,
+                                            "op": "+",
+                                            "right": {
+                                                "left": {
+                                                    "left": 0.5,
+                                                    "op": "*",
+                                                    "right": "B"
+                                                },
+                                                "op": "pow",
+                                                "right": 2
+                                            }
+                                        }
                                     },
                                     "op": "/",
                                     "right": {
@@ -1449,14 +1535,26 @@
                                             "right": 30
                                         },
                                         "op": "/",
-                                        "right": 3601.99
+                                        "right": {
+                                            "left": 1.99,
+                                            "op": "+",
+                                            "right": {
+                                                "left": {
+                                                    "left": 0.5,
+                                                    "op": "*",
+                                                    "right": "B"
+                                                },
+                                                "op": "pow",
+                                                "right": 2
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     ],
                     "guard": {
-                        "comment": "((((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 120) ^ 2))) > 0)",
+                        "comment": "((((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * B) ^ 2))) > 0)",
                         "exp": {
                             "left": {
                                 "left": {
@@ -1477,7 +1575,19 @@
                                     "right": 30
                                 },
                                 "op": "/",
-                                "right": 3601.99
+                                "right": {
+                                    "left": 1.99,
+                                    "op": "+",
+                                    "right": {
+                                        "left": {
+                                            "left": 0.5,
+                                            "op": "*",
+                                            "right": "B"
+                                        },
+                                        "op": "pow",
+                                        "right": 2
+                                    }
+                                }
                             },
                             "op": ">",
                             "right": 0
@@ -1485,7 +1595,7 @@
                     },
                     "location": "l",
                     "rate": {
-                        "comment": "(((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * 120) ^ 2)))",
+                        "comment": "(((((P2 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * B) ^ 2)))",
                         "exp": {
                             "left": {
                                 "left": {
@@ -1505,7 +1615,19 @@
                                 "right": 30
                             },
                             "op": "/",
-                            "right": 3601.99
+                            "right": {
+                                "left": 1.99,
+                                "op": "+",
+                                "right": {
+                                    "left": {
+                                        "left": 0.5,
+                                        "op": "*",
+                                        "right": "B"
+                                    },
+                                    "op": "pow",
+                                    "right": 2
+                                }
+                            }
                         }
                     }
                 },
@@ -2300,7 +2422,7 @@
                         {
                             "location": "l",
                             "probability": {
-                                "comment": "((((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * E) ^ 2))) / (((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * E) ^ 2))))",
+                                "comment": "((((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _E) ^ 2))) / (((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _E) ^ 2))))",
                                 "exp": {
                                     "left": {
                                         "left": {
@@ -2328,7 +2450,7 @@
                                                 "left": {
                                                     "left": 0.5,
                                                     "op": "*",
-                                                    "right": "E"
+                                                    "right": "_E"
                                                 },
                                                 "op": "pow",
                                                 "right": 2
@@ -2362,7 +2484,7 @@
                                                 "left": {
                                                     "left": 0.5,
                                                     "op": "*",
-                                                    "right": "E"
+                                                    "right": "_E"
                                                 },
                                                 "op": "pow",
                                                 "right": 2
@@ -2374,7 +2496,7 @@
                         }
                     ],
                     "guard": {
-                        "comment": "((((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * E) ^ 2))) > 0)",
+                        "comment": "((((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _E) ^ 2))) > 0)",
                         "exp": {
                             "left": {
                                 "left": {
@@ -2402,7 +2524,7 @@
                                         "left": {
                                             "left": 0.5,
                                             "op": "*",
-                                            "right": "E"
+                                            "right": "_E"
                                         },
                                         "op": "pow",
                                         "right": 2
@@ -2415,7 +2537,7 @@
                     },
                     "location": "l",
                     "rate": {
-                        "comment": "(((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * E) ^ 2)))",
+                        "comment": "(((((P8 * 1/20) * 33/1000) / 1) * 30) / ((1 + ((33/1000 / 1) * 30)) + (((1/2 / 1) * _E) ^ 2)))",
                         "exp": {
                             "left": {
                                 "left": {
@@ -2442,7 +2564,7 @@
                                     "left": {
                                         "left": 0.5,
                                         "op": "*",
-                                        "right": "E"
+                                        "right": "_E"
                                     },
                                     "op": "pow",
                                     "right": 2
@@ -2556,12 +2678,12 @@
             "value": 0.00075
         },
         {
-            "name": "A",
+            "name": "_A_MAX",
             "type": "int",
-            "value": 0
+            "value": 120
         },
         {
-            "name": "B",
+            "name": "B_MAX",
             "type": "int",
             "value": 120
         },
@@ -2576,7 +2698,7 @@
             "value": 120
         },
         {
-            "name": "E_MAX",
+            "name": "_E_MAX",
             "type": "int",
             "value": 120
         },
@@ -2645,7 +2767,7 @@
         "derived-operators"
     ],
     "jani-version": 1,
-    "name": "Toggle_10_10",
+    "name": "testjani",
     "properties": [],
     "restrict-initial": {
         "exp": true
@@ -2653,13 +2775,19 @@
     "system": {
         "elements": [
             {
+                "automaton": "_A"
+            },
+            {
+                "automaton": "B"
+            },
+            {
                 "automaton": "D"
             },
             {
                 "automaton": "Y"
             },
             {
-                "automaton": "E"
+                "automaton": "_E"
             },
             {
                 "automaton": "_X"
@@ -2711,6 +2839,8 @@
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     "Degradation_C",
                     null,
                     null,
@@ -2726,6 +2856,8 @@
             {
                 "result": "Degradation_D",
                 "synchronise": [
+                    null,
+                    null,
                     "Degradation_D",
                     null,
                     null,
@@ -2747,6 +2879,8 @@
             {
                 "result": "Degradation_E",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     null,
                     "Degradation_E",
@@ -2772,6 +2906,8 @@
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     "Degradation_FF",
                     null,
                     null,
@@ -2789,6 +2925,8 @@
             {
                 "result": "Degradation_X",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     null,
                     null,
@@ -2810,6 +2948,8 @@
             {
                 "result": "Degradation_Y",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     "Degradation_Y",
                     null,
@@ -2836,6 +2976,8 @@
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     "Degradation_Z",
                     null,
                     null,
@@ -2852,6 +2994,8 @@
             {
                 "result": "Production_P1",
                 "synchronise": [
+                    null,
+                    null,
                     "Production_P1",
                     null,
                     null,
@@ -2875,6 +3019,8 @@
                 "synchronise": [
                     null,
                     null,
+                    null,
+                    null,
                     "Production_P2",
                     "Production_P2",
                     null,
@@ -2894,6 +3040,8 @@
             {
                 "result": "Production_P3",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     "Production_P3",
                     null,
@@ -2920,6 +3068,8 @@
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     "Production_P4",
                     null,
                     null,
@@ -2936,6 +3086,8 @@
             {
                 "result": "Production_P5",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     "Production_P5",
                     null,
@@ -2962,6 +3114,8 @@
                     null,
                     null,
                     null,
+                    null,
+                    null,
                     "Production_P6",
                     null,
                     null,
@@ -2978,6 +3132,8 @@
             {
                 "result": "Production_P7",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     null,
                     null,
@@ -2999,6 +3155,8 @@
             {
                 "result": "Production_P8",
                 "synchronise": [
+                    null,
+                    null,
                     null,
                     null,
                     null,
@@ -3035,7 +3193,7 @@
         },
         {
             "initial-value": 0,
-            "name": "rewardmodel_E",
+            "name": "rewardmodel__E",
             "transient": true,
             "type": "real"
         },
@@ -3112,6 +3270,26 @@
             "type": "real"
         },
         {
+            "initial-value": 0,
+            "name": "_A",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 120
+            }
+        },
+        {
+            "initial-value": 120,
+            "name": "B",
+            "type": {
+                "base": "int",
+                "kind": "bounded",
+                "lower-bound": 0,
+                "upper-bound": 120
+            }
+        },
+        {
             "initial-value": 70,
             "name": "D",
             "type": {
@@ -3133,7 +3311,7 @@
         },
         {
             "initial-value": 0,
-            "name": "E",
+            "name": "_E",
             "type": {
                 "base": "int",
                 "kind": "bounded",
