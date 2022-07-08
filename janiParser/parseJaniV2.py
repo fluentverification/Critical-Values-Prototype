@@ -22,7 +22,7 @@ STYLE_SBML = 2
 ###### Utility: printUsage ######
 # The purpose of this utility is self explanatory
 def printUsage():
-  print("Usage: " + sys.argv[0] + " <filename> ")
+  print("Usage: " + sys.argv[0] + " <filename> <tolerance>")
 
 ###### Utility: runEQ ######
 # The purpose of this utility is to allow for 
@@ -457,15 +457,16 @@ class AbstractModel:
 ###### Main ######
 ##################
 
-# Gather number of arguments
-n = len(sys.argv)
+if __name__ == "__main__":
+  # Gather number of arguments
+  n = len(sys.argv)
 
-if n != 2:
-  printUsage()
-  quit()
+  if n != 3:
+    printUsage()
+    quit()
 
-myAbstract = AbstractModel(sys.argv[1])
-myAbstract.makeAbstract(.3)
-myAbstract.addStates("_C", {0,10,20,30,40,50,60}, True )
-myAbstract.makeModel("Outfile.prism")
+  myAbstract = AbstractModel(sys.argv[1])
+  myAbstract.makeAbstract(float(sys.argv[2]))
+  myAbstract.addStates("_C", {0,10,20,30,40,50,60,70,80,90,100,110,120,130}, True )
+  myAbstract.makeModel("Outfile.prism")
 
